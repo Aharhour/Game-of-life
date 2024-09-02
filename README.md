@@ -1,6 +1,6 @@
 # Game of Life
 
-Welcome to the **Game of Life** repository! This project is an implementation of Conway's Game of Life, a fascinating cellular automaton.
+Welcome to our version of **Game of Life**! This project is an implementation of Conway's Game of Life, a fascinating cellular automaton.
 
 ## Table of Contents
 - [Introduction](#introduction)
