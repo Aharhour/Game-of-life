@@ -1,8 +1,16 @@
+.game-holder {
+    text-align: center;
+}
+
+.div-holders {
+    display: flex;
+}
+
 .controls {
     margin: 20px 0;
 }
 
-button {
+.button-game {
     margin: 5px;
     padding: 10px;
 }
