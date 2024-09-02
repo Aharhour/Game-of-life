@@ -25,12 +25,18 @@ body {
     color: var(--text-color);
 }
 
+.container {
+    padding-bottom: 10px;
+}
+
 header {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: var(--bg-color);
     padding: 1% 3%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -42,23 +48,24 @@ header {
 
 .navlist {
     display: flex;
-    margin: 0 2%;
+    gap: 2rem;
 }
 
 .navlist a {
-    display: inline-block;
-    margin: 0 2%;
     font-size: var(--p-font);
     font-weight: 500;
     color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.navlist a:hover {
+.navlist a:hover,
+.navlist a:focus {
+    color: var(--bg-color);
+    background-color: var(--second-color);
+    text-decoration: none;
     transform: translateY(-3px);
-    color: var(--second-color);
-    text-decoration-color: var(--text-color);
-    text-underline-offset: 0.3rem;
-    text-decoration: underline;
 }
 
 .center-text {
@@ -105,47 +112,6 @@ header {
 .box:hover {
     transform: translateY(-4px) scale(1.02);
     border-left: 0.5rem solid var(--text-color);
-    cursor: pointer;
-}
-
-.newsletter-content {
-    display: flex;
-    justify-content: space-between;
-    background: var(--text-color);
-    padding: 5% 7%;
-    border-radius: 1.5rem;
-}
-
-.newsletter-text h2 {
-    color: var(--bg-color);
-    font-size: 3vw;
-    font-weight: 800;
-}
-
-.newsletter-text p {
-    font-size: var(--p-font);
-    font-weight: 500;
-    color: var(--bg-color);
-}
-
-.newsletter-content form {
-    display: flex;
-    padding: 1% 0;
-    gap: 2%;
-}
-
-.newsletter-content form input:first-child {
-    border: none;
-    outline: none;
-    background: var(--bg-color);
-    font-size: var(--p-font);
-    color: var(--text-color);
-    border-radius: 0.5rem;
-}
-
-.newsletter-content form input:last-child {
-    border-radius: 0.5rem;
-    font-size: var(--p-font);
     cursor: pointer;
 }
 
