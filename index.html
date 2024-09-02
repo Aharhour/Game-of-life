@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/game.css">
+    <script src="/JS/game.js" defer></script>
+    <title>Game of Life</title>
+</head>
+<body>
+    <header>
+        <h1>Game of Life</h1>
+    </header>
+
+    <canvas id="gameCanvas" width="500" height="500"></canvas>
+    <div class="controls">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+        <button id="clearBtn">Clear</button>
+        <label for="speed">Speed:</label>
+        <input type="range" id="speed" min="100" max="1000" value="500">
+    </div>
+</body>
+</html>
