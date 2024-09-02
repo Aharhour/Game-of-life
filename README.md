@@ -8,8 +8,6 @@ Welcome to our version of **Game of Life**! This project is an implementation of
 - [Installation](#installation)
 - [Usage](#usage)
 - [Rules](#rules)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 Conway's Game of Life is a zero-player game that simulates the evolution of cells on a grid based on a set of simple rules. Despite its simplicity, the game can produce complex and unpredictable patterns, making it a popular subject of study in mathematics, computer science, and artificial life.
@@ -24,7 +22,7 @@ Conway's Game of Life is a zero-player game that simulates the evolution of cell
 - **Time-Line:** Navigate through the history of the simulation to review past states and patterns.
 - **Character Creator:** Customize the appearance of cells with unique designs or colors.
 - **Leaderboard:** Track high scores or notable patterns based on criteria like longevity or population size.
-- 
+
 ## Usage
 
 ### Set Up Initial State:
