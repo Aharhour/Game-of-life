@@ -90,12 +90,17 @@ clearBtn.addEventListener('click', () => {
 });
 
 speedInput.addEventListener('input', () => {
-    if (running) {
+if (running) {
         clearInterval(interval);
+        const minInterval = 10;
+        const maxInterval = 200;
+        const speed = speedInput.value;
+        const intervalTime = maxInterval - ((speed - 10) * (maxInterval - minInterval) / (100 - 10));
+
         interval = setInterval(() => {
             grid = updateGrid(grid);
             drawGrid(grid);
-        }, speedInput.value);
+        }, intervalTime);
     }
 });
 
