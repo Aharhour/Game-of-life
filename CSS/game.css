@@ -1,6 +1,25 @@
-canvas {
-    border: 1px solid black;
-}
 .controls {
-    margin-top: 10px;
+    margin: 20px 0;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+}
+
+#grid {
+    display: grid;
+    margin: 0 auto;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.cell.active {
+    background-color: #333;
 }

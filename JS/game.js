@@ -1,107 +1,119 @@
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-const startBtn = document.getElementById('startBtn');
-const stopBtn = document.getElementById('stopBtn');
-const clearBtn = document.getElementById('clearBtn');
-const speedInput = document.getElementById('speed');
+document.addEventListener('DOMContentLoaded', () => {
+    const gridContainer = document.getElementById('grid');
+    const startButton = document.getElementById('start');
+    const stopButton = document.getElementById('stop');
+    const clearButton = document.getElementById('clear');
+    const sizeInput = document.getElementById('size');
 
-const rows = 25;
-const cols = 75;
-const cellSize = 20;
 
-let grid = createGrid(rows, cols);
-let running = false;
-let interval;
+    function getGridSize() {
+        return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
+    }
 
-function createGrid(rows, cols) {
-    return Array.from({ length: rows }, () => Array(cols).fill(0));
-}
+    let intervalId;
+    let cells = [];
 
-function drawGrid(grid) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            ctx.beginPath();
-            ctx.rect(col * cellSize, row * cellSize, cellSize, cellSize);
-            ctx.fillStyle = grid[row][col] ? 'black' : 'white';
-            ctx.fill();
-            ctx.stroke();
+    // Create the grid with cells
+    function createGrid() {
+        const gridSize = getGridSize();
+        gridContainer.innerHTML = ''; // Clear previous grid
+        gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 20px)`;
+        gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 20px)`;
+
+        cells = [];
+        for (let i = 0; i < gridSize * gridSize; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            cell.addEventListener('click', () => cell.classList.toggle('active'));
+            gridContainer.appendChild(cell);
+            cells.push(cell);
         }
     }
-}
 
-function updateGrid(grid) {
-    const newGrid = createGrid(rows, cols);
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const aliveNeighbors = countAliveNeighbors(grid, row, col);
-            if (grid[row][col]) {
-                newGrid[row][col] = aliveNeighbors === 2 || aliveNeighbors === 3 ? 1 : 0;
+    // Update the grid according to Conway's rules
+    function updateGrid() {
+        const gridSize = getGridSize();
+        const newStates = [];
+
+        // Calculate the new state for each cell
+        for (let i = 0; i < cells.length; i++) {
+            const isAlive = cells[i].classList.contains('active');
+            let aliveNeighbors = 0;
+
+            const x = i % gridSize;
+            const y = Math.floor(i / gridSize);
+
+            // Check neighbors
+            for (let dx = -1; dx <= 1; dx++) {
+                for (let dy = -1; dy <= 1; dy++) {
+                    if (dx === 0 && dy === 0) continue;
+
+                    const nx = x + dx;
+                    const ny = y + dy;
+
+                    if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
+                        const neighborIndex = nx + ny * gridSize;
+                        if (cells[neighborIndex].classList.contains('active')) {
+                            aliveNeighbors++;
+                        }
+                    }
+                }
+            }
+
+            // Determine new state based on neighbor count
+            if (isAlive) {
+                newStates[i] = aliveNeighbors === 2 || aliveNeighbors === 3;
             } else {
-                newGrid[row][col] = aliveNeighbors === 3 ? 1 : 0;
+                newStates[i] = aliveNeighbors === 3;
+            }
+        }
+
+        // Apply new state to each cell
+        for (let i = 0; i < cells.length; i++) {
+            if (newStates[i]) {
+                cells[i].classList.add('active');
+            } else {
+                cells[i].classList.remove('active');
             }
         }
     }
-    return newGrid;
-}
 
-function countAliveNeighbors(grid, x, y) {
-    const neighbors = [
-        [-1, -1], [-1, 0], [-1, 1],
-        [0, -1],           [0, 1],
-        [1, -1], [1, 0], [1, 1],
-    ];
-    return neighbors.reduce((acc, [dx, dy]) => {
-        const newX = x + dx;
-        const newY = y + dy;
-        if (newX >= 0 && newX < rows && newY >= 0 && newY < cols) {
-            acc += grid[newX][newY];
+    // Start the simulation
+    function startSimulation() {
+        intervalId = setInterval(updateGrid, 100);
+    }
+
+    // Stop the simulation
+    function stopSimulation() {
+        clearInterval(intervalId);
+    }
+
+    // Clear the grid
+    function clearGrid() {
+        cells.forEach(cell => cell.classList.remove('active'));
+        stopSimulation();
+    }
+
+    // Update grid size and recreate the grid
+    function updateGridSize() {
+        let newSize = getGridSize();
+        
+        // If the input value exceeds 75, set it back to 75
+        if (parseInt(sizeInput.value, 10) > 75) {
+            sizeInput.value = 75;
+            newSize = 75;
         }
-        return acc;
-    }, 0);
-}
-
-canvas.addEventListener('click', (event) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = Math.floor((event.clientX - rect.left) / cellSize);
-    const y = Math.floor((event.clientY - rect.top) / cellSize);
-    grid[y][x] = grid[y][x] ? 0 : 1;
-    drawGrid(grid);
-});
-
-startBtn.addEventListener('click', () => {
-    if (!running) {
-        running = true;
-        interval = setInterval(() => {
-            grid = updateGrid(grid);
-            drawGrid(grid);
-        }, speedInput.value);
+        
+        createGrid(); // Recreate the grid with the new size
+        stopSimulation();
     }
+
+    // Attach event listeners to buttons and input
+    startButton.addEventListener('click', startSimulation);
+    stopButton.addEventListener('click', stopSimulation);
+    clearButton.addEventListener('click', clearGrid);
+    sizeInput.addEventListener('change', updateGridSize);
+
+    // Initialize the grid
+    createGrid();
 });
-
-stopBtn.addEventListener('click', () => {
-    running = false;
-    clearInterval(interval);
-});
-
-clearBtn.addEventListener('click', () => {
-    grid = createGrid(rows, cols);
-    drawGrid(grid);
-});
-
-speedInput.addEventListener('input', () => {
-if (running) {
-        clearInterval(interval);
-        const minInterval = 10;
-        const maxInterval = 200;
-        const speed = speedInput.value;
-        const intervalTime = maxInterval - ((speed - 10) * (maxInterval - minInterval) / (100 - 10));
-
-        interval = setInterval(() => {
-            grid = updateGrid(grid);
-            drawGrid(grid);
-        }, intervalTime);
-    }
-});
-
-drawGrid(grid);
