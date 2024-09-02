@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearButton = document.getElementById('clear');
     const sizeInput = document.getElementById('size');
 
-
     function getGridSize() {
         return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
     }
