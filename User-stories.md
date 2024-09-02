@@ -42,8 +42,3 @@
 **Als** gebruiker,  
 **wil ik** een leaderboard kunnen bekijken,  
 **zodat** ik de prestaties of opvallende patronen kan bijhouden op basis van criteria zoals levensduur of populatiegrootte.
-
-### User Story 10: Aangepaste Regels
-**Als** gebruiker,  
-**wil ik** de spelregels kunnen aanpassen,  
-**zodat** ik nieuwe en unieke gedragingen in de simulatie kan creëren en verkennen.
