@@ -5,9 +5,9 @@ const stopBtn = document.getElementById('stopBtn');
 const clearBtn = document.getElementById('clearBtn');
 const speedInput = document.getElementById('speed');
 
-const rows = 50;
-const cols = 50;
-const cellSize = canvas.width / cols;
+const rows = 25;
+const cols = 75;
+const cellSize = 20;
 
 let grid = createGrid(rows, cols);
 let running = false;
