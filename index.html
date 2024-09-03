@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/game.css">
     <script src="JS/game.js" defer></script>
     <script src="JS/LeaderBoard.js" defer></script>
+    <script src="JS/script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -17,16 +18,22 @@
                 <li><a href="character-builder.html">Character builder</a></li>
                 <li><a href="https://github.com/Aharhour/Game-of-life">Reporsitory</a></li>
             </ul>
+            <div class="avatar-container">
+                <img src="images/gerald-avatar.png" alt="Avatar" class="avatar" id="avatar">
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="character-builder.html" id="change-character">Change Character</a>
+                </div>
+            </div>
         </header>
     </div>
 
-    <section class="producten" data-aos="fade-up">
+
+    <section class="feature">
+
         <div class="center-text">
             <h2>Game Rules</h2>
         </div>
-    </section>
-
-    <section class="feature">
+        
         <div class="feature-content" data-aos="zoom-in">
             <div class="box">
                 <div class="f-icon">
@@ -34,10 +41,9 @@
                 </div>
 
                 <div class="f-text">
-                    <h3>Lorem Ipsum</h3>
+                    <h3>Rule-1</h3>
                     <p>
-                        Cras bibendum metus sit amet sollicitudin mollis.
-                        Morbi dignissim erat ligula, nec consequat lectus pharetra ut.
+                        A cell with 2 or 3 live neighbors will remain alive.
                     </p>
                 </div>
             </div>
@@ -48,10 +54,9 @@
                 </div>
 
                 <div class="f-text">
-                    <h3>Lorem Ipsum</h3>
+                    <h3>Rule-2</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Aliquam sit amet fringilla elit. Donec pulvinar orci sed urna venenatis tincidunt.
+                        A cell with fewer than 2 or more than 3 live neighbors will die.
                     </p>
                 </div>
             </div>
@@ -62,10 +67,10 @@
                 </div>
 
                 <div class="f-text">
-                    <h3>Lorem Ipsum</h3>
+                    <h3>Rule-3</h3>
                     <p>
-                        In auctor orci sit amet nibh gravida accumsan.
-                        Nunc lacinia commodo quam ac iaculis
+                        * A dead cell with exactly 3 live neighbors becomes alive.
+                        * A dead cell with fewer or more than 3 live neighbors remains dead.
                     </p>
                 </div>
             </div>
@@ -77,10 +82,11 @@
             <button class="button-game" id="start">Start</button>
             <button class="button-game" id="stop">Stop</button>
             <button class="button-game" id="clear">Clear</button>
-            <label for="color-click">Dod color:</label>
+            <label for="color-click">Dot color:</label>
             <input type="color" id="color-click" value="#ffff">
             <label for="background-color">background color</label>
             <input type="color" id="background-color" value="#ff0000">
+            <input type="range" id="gamespeed" min="10" max="300" value="150">
             <label for="size">Grid Size:</label>
             <input type="number" id="size" value="50" min="10" max="100">
             <p>Population: <p id="score">0</p></p>
