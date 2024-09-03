@@ -96,23 +96,32 @@ header {
     font-size: var(--h2-font);
 }   
 
+
+
 .feature-content {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2%;
 }
 
 .box {
+    flex: 1 1 calc(33.333% - 2%);
+    min-width: 25%;
     padding: 1% 2%;
     border-left: 0.5rem solid var(--second-color);
     box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #fff;
+    transition: transform 0.3s ease, border-left-color 0.3s ease;
+    margin: 1%;
 }
 
 .f-icon i {
     font-size: 2rem;
+    margin-right: 1rem;
 }
 
 .f-text h3 {
@@ -155,5 +164,17 @@ header {
     }
     .feature {
         padding: 1% 5% 1%;
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        flex: 1 1 calc(50% - 2%);
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        flex: 1 1 100%;
     }
 }
