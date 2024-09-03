@@ -10,16 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const scoreDisplay = document.getElementById('score');
         const clickColorInput = document.getElementById('color-click');
         const backgroundColorInput = document.getElementById('background-color');
-    
+        const GameTimer = document.getElementById('gamespeed');
 
         let intervalId;
         let cells = [];
         let score = 0;
         let prevStates = [];
 
+        GameTimer.addEventListener('input', () => {
+            clearInterval(intervalId);
+            intervalId = setInterval(updateGrid, timespeeds());
+        });
+
         // Returns the grid size based on user input, clamped between 10 and 75.
         function getGridSize() {
             return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
+        }
+
+        // Function to calculate speed based on the sliders value
+        function timespeeds() {
+            return 1000 / GameTimer.value;
         }
 
         // Updates the score and displays it in the HTML
@@ -75,60 +85,41 @@ document.addEventListener('DOMContentLoaded', () => {
             updateScore(score + (initialLiveCount * 1000));
         }
 
-
         function updateGrid() {
             // Get the current grid size from the input
             const gridSize = getGridSize();
 
             const newStates = [];
-
-            // Flag to check if any cell state has changed
             let hasChanged = false;
         
             // Checks over each cell to decide its next state
 
             for (let i = 0; i < cells.length; i++) {
-                // Check if the current cell is 'active'
                 const isAlive = cells[i].classList.contains('active');
-                // Count of the numbers of alive around it
                 let aliveNeighbors = 0;
-        
-                // Calculate the x and y coordinates of the current cell in the grid
                 const x = i % gridSize;
                 const y = Math.floor(i / gridSize);
-        
-                // Checks over the cells around it (3x3 grid surrounding the cell)
+
                 for (let dx = -1; dx <= 1; dx++) {
                     for (let dy = -1; dy <= 1; dy++) {
-                        // Skip the cell itself
                         if (dx === 0 && dy === 0) continue;
-        
-                        // Calculate the coordinates of the cell around it
                         const nx = x + dx;
                         const ny = y + dy;
-        
-                        // Check if the neighbor coordinates are within the grids limits
                         if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
-                            // Calculate the index of the cells around it
                             const neighborIndex = nx + ny * gridSize;
-                            // Check if the neighboring cell is an 'active' cell
                             if (cells[neighborIndex].classList.contains('active')) {
                                 aliveNeighbors++;
                             }
                         }
                     }
                 }
-        
-                // Checks if the state of the current cell is based on the number of alive neighbors
+
                 if (isAlive) {
-                    // Cell remains alive if it has 2 or 3 alive neighbors, otherwise it dies
                     newStates[i] = aliveNeighbors === 2 || aliveNeighbors === 3;
                 } else {
-                    // Cell becomes alive if it has exactly 3 alive neighbors
                     newStates[i] = aliveNeighbors === 3;
                 }
-        
-                // If the state of the cell has changed, set the flag
+
                 if (isAlive !== newStates[i]) {
                     hasChanged = true;
                 }
@@ -146,27 +137,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     cells[i].style.backgroundColor = backgroundColor; 
                 }
             }
-        
-            // If any cell state has changed, update the score
+
             if (hasChanged) {
                 updateScore(score + 1000);
             }
-        
-            // Save the current state of the grid
+
             const currentState = cells.map(cell => cell.classList.contains('active'));
             prevStates.push(currentState);
-            
-            // Keep only the last two states in history
+
             if (prevStates.length > 2) {
                 prevStates.shift();
             }
         }
-        
 
-        // Starts the game with a 1 second speed
         function startSimulation() {
             calculateInitialScore();
-            intervalId = setInterval(updateGrid, 100);
+            intervalId = setInterval(updateGrid, timespeeds());
         }
 
         function stopSimulation() {
@@ -178,17 +164,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!scores.includes(score)) {
                 scores.push(score);
-
                 localStorage.setItem('scores', JSON.stringify(scores));
             }
         }
 
-        // Clears all the active cells
         function clearGrid() {
             const backgroundColor = backgroundColorInput.value;
             cells.forEach(cell => {
                 cell.classList.remove('active');
-                cell.style.backgroundColor = backgroundColor; // Reset all cells to background color
+                cell.style.backgroundColor = backgroundColor; 
             });
             stopSimulation();
             updateScore(0);
@@ -196,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(localStorage.getItem('scores'));
         }
 
-        // Maximum size of the grid and updates the grid to match with the input of the user
         function updateGridSize() {
             if (parseInt(sizeInput.value, 10) > 75) {
                 sizeInput.value = 75;
@@ -206,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
             stopSimulation();
         }
 
-        // When Button is pressed functions
         startButton.addEventListener('click', startSimulation);
         stopButton.addEventListener('click', stopSimulation);
         clearButton.addEventListener('click', clearGrid);
