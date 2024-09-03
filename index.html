@@ -10,6 +10,7 @@
     <script src="JS/LeaderBoard.js" defer></script>
 </head>
 <body>
+    
     <div class="container">
         <header>
             <a href="index.html" class="logo">Grid Evolution</a>
@@ -91,10 +92,18 @@
         <div class="content"></div>
     </div>
 
-    <div class="copyright">
-        <div class="end-text">
-            <p>CopyRight 2024 By Oneliners</p>
+    <div id="container">
+        <div class="container-inner">
+            <div class="content">
+                <p id="score-text">Jouw score: 0</p>
+                <p>Wil je verder spelen?</p>
+            </div>
+            <div class="buttons">
+                <button type="button" class="confirm" id="confirm">Confirm</button>
+                <button type="button" class="cancel" id="cancel">Cancel</button>
+            </div>
         </div>
     </div>
+
 </body>
 </html>
