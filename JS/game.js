@@ -1,29 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     function GameGrid() {
+        // Gets and or creates all the elements for the game
         const gridContainer = document.getElementById('grid');
         const startButton = document.getElementById('start');
         const stopButton = document.getElementById('stop');
         const clearButton = document.getElementById('clear');
         const sizeInput = document.getElementById('size');
-        const scoreDisplay = document.getElementById('score'); // Assuming you have an element to display the score
-
-        function getGridSize() {
-            return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
-        }
+        const scoreDisplay = document.getElementById('score');
 
         let intervalId;
         let cells = [];
         let score = 0;
-        let prevStates = []; // To store the previous states of the grid
+        let prevStates = [];
+
+        // Returns the grid size based on user input, clamped between 10 and 75.
+        function getGridSize() {
+            return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
+        }
+
+        // Updates the score and displays it in the HTML and console.log
+        function updateScore(newScore) {
+            score = newScore;
+            scoreDisplay.textContent = score;
+            console.log('Score:', score);
+        }
 
         function createGrid() {
+            // Gets the size of the grid from the input element in the HTML
             const gridSize = getGridSize();
+
+            // Clear the grid
             gridContainer.innerHTML = '';
+
+            // Makes the grid by using the gridSize amount ( X, Y based ) and they are gonna be 20px by 20px
             gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 20px)`;
             gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 20px)`;
 
+            // Creates the cells array to hold each cell element
             cells = [];
+
+            // Create the grid by adding 'gridSize * gridSize' cells to the grid container
             for (let i = 0; i < gridSize * gridSize; i++) {
                 const cell = document.createElement('div');
                 cell.className = 'cell';
@@ -32,60 +49,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 cells.push(cell);
             }
 
-            // Reset score and update the display
-            score = 0;
-            scoreDisplay.textContent = `Score: ${score}`;
+            // Resets the score to 0 when grid is created
+            updateScore(0);
+            // Clears previous states as the grid has been reset
             prevStates = [];
         }
 
+        // Updates the score by adding the count of active cells to the current score
         function calculateInitialScore() {
-            // Count all cells that are initially active and add to the score
             let initialLiveCount = cells.filter(cell => cell.classList.contains('active')).length;
-            score += initialLiveCount;
-            scoreDisplay.textContent = `Score: ${score}`;
+            updateScore(score + initialLiveCount);
         }
 
+
         function updateGrid() {
+            // Get the current grid size from the input
             const gridSize = getGridSize();
+
             const newStates = [];
+
+            // Flag to check if any cell state has changed
             let hasChanged = false;
-
+        
+            // Checks over each cell to decide its next state
             for (let i = 0; i < cells.length; i++) {
+                // Check if the current cell is 'active'
                 const isAlive = cells[i].classList.contains('active');
+                // Count of the numbers of alive around it
                 let aliveNeighbors = 0;
-
+        
+                // Calculate the x and y coordinates of the current cell in the grid
                 const x = i % gridSize;
                 const y = Math.floor(i / gridSize);
-
+        
+                // Checks over the cells around it (3x3 grid surrounding the cell)
                 for (let dx = -1; dx <= 1; dx++) {
                     for (let dy = -1; dy <= 1; dy++) {
+                        // Skip the cell itself
                         if (dx === 0 && dy === 0) continue;
-
+        
+                        // Calculate the coordinates of the cell around it
                         const nx = x + dx;
                         const ny = y + dy;
-
+        
+                        // Check if the neighbor coordinates are within the grids limits
                         if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
+                            // Calculate the index of the cells around it
                             const neighborIndex = nx + ny * gridSize;
+                            // Check if the neighboring cell is an 'active' cell
                             if (cells[neighborIndex].classList.contains('active')) {
                                 aliveNeighbors++;
                             }
                         }
                     }
                 }
-
+        
+                // Checks if the state of the current cell is based on the number of alive neighbors
                 if (isAlive) {
+                    // Cell remains alive if it has 2 or 3 alive neighbors, otherwise it dies
                     newStates[i] = aliveNeighbors === 2 || aliveNeighbors === 3;
                 } else {
+                    // Cell becomes alive if it has exactly 3 alive neighbors
                     newStates[i] = aliveNeighbors === 3;
                 }
-
-                // Check if the cell's state will change
+        
+                // If the state of the cell has changed, set the flag
                 if (isAlive !== newStates[i]) {
                     hasChanged = true;
                 }
             }
-
-            // Update the grid
+        
+            // Apply the new state to each cell
             for (let i = 0; i < cells.length; i++) {
                 if (newStates[i]) {
                     cells[i].classList.add('active');
@@ -93,50 +127,53 @@ document.addEventListener('DOMContentLoaded', () => {
                     cells[i].classList.remove('active');
                 }
             }
-
-            // Add 1 point if there was a change in the grid state
+        
+            // If any cell state has changed, update the score
             if (hasChanged) {
-                score += 1;
-                scoreDisplay.textContent = `Score: ${score}`;
+                updateScore(score + 1);
             }
-
-            // Store the current state as the previous state for the next iteration
+        
+            // Save the current state of the grid
             const currentState = cells.map(cell => cell.classList.contains('active'));
             prevStates.push(currentState);
+            
+            // Keep only the last two states in history
             if (prevStates.length > 2) {
-                prevStates.shift(); // Keep only the last two states to check for loops
+                prevStates.shift();
             }
         }
+        
 
+        // Starts the game with a 1 second speed
         function startSimulation() {
-            calculateInitialScore(); // Calculate the initial score before starting the simulation
+            calculateInitialScore();
             intervalId = setInterval(updateGrid, 100);
         }
 
+        // Pauses the game
         function stopSimulation() {
             clearInterval(intervalId);
         }
 
+        // Clears all the active cells
         function clearGrid() {
             cells.forEach(cell => cell.classList.remove('active'));
             stopSimulation();
-            score = 0;
-            scoreDisplay.textContent = `Score: ${score}`;
+            updateScore(0);
             prevStates = [];
         }
 
+        // Maximum size of the grid and updates the grid to match with the input of the user
         function updateGridSize() {
-            let newSize = getGridSize();
-
             if (parseInt(sizeInput.value, 10) > 75) {
                 sizeInput.value = 75;
-                newSize = 75;
             }
 
             createGrid();
             stopSimulation();
         }
 
+        // When Button is pressed functions
         startButton.addEventListener('click', startSimulation);
         stopButton.addEventListener('click', stopSimulation);
         clearButton.addEventListener('click', clearGrid);
