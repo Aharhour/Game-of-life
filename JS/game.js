@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const stopButton = document.getElementById('stop');
     const clearButton = document.getElementById('clear');
     const sizeInput = document.getElementById('size');
-
+    const clickColorInput = document.getElementById('color-click');
+    const backgroundColorInput = document.getElementById('background-color');
 
     function getGridSize() {
         return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
@@ -20,11 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
         gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 20px)`;
         gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 20px)`;
 
+        const backgroundColor = backgroundColorInput.value;
+        gridContainer.style.backgroundColor = backgroundColor; // Set the grid background color
+
         cells = [];
         for (let i = 0; i < gridSize * gridSize; i++) {
             const cell = document.createElement('div');
             cell.className = 'cell';
-            cell.addEventListener('click', () => cell.classList.toggle('active'));
+            cell.id = 'cell';
+            cell.style.backgroundColor = backgroundColor;
+
+            cell.addEventListener('click', () => {
+                const clickColor = clickColorInput.value;
+                cell.classList.toggle('active');
+                if (cell.classList.contains('active')) {
+                    cell.style.backgroundColor = clickColor; // Set cell color to click color when active
+                } else {
+                    cell.style.backgroundColor = backgroundColor; // Reset cell color to background color when inactive
+                }
+            });
             gridContainer.appendChild(cell);
             cells.push(cell);
         }
@@ -61,19 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Determine new state based on neighbor count
-            if (isAlive) {
-                newStates[i] = aliveNeighbors === 2 || aliveNeighbors === 3;
-            } else {
-                newStates[i] = aliveNeighbors === 3;
-            }
+            newStates[i] = isAlive
+                ? aliveNeighbors === 2 || aliveNeighbors === 3
+                : aliveNeighbors === 3;
         }
 
         // Apply new state to each cell
+        const clickColor = clickColorInput.value;
+        const backgroundColor = backgroundColorInput.value;
         for (let i = 0; i < cells.length; i++) {
             if (newStates[i]) {
                 cells[i].classList.add('active');
+                cells[i].style.backgroundColor = clickColor; // Active cells get the click color
             } else {
                 cells[i].classList.remove('active');
+                cells[i].style.backgroundColor = backgroundColor; // Inactive cells reset to background color
             }
         }
     }
@@ -90,7 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Clear the grid
     function clearGrid() {
-        cells.forEach(cell => cell.classList.remove('active'));
+        const backgroundColor = backgroundColorInput.value;
+        cells.forEach(cell => {
+            cell.classList.remove('active');
+            cell.style.backgroundColor = backgroundColor; // Reset all cells to background color
+        });
         stopSimulation();
     }
 
@@ -98,22 +119,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateGridSize() {
         let newSize = getGridSize();
         
-        // If the input value exceeds 75, set it back to 75
         if (parseInt(sizeInput.value, 10) > 75) {
             sizeInput.value = 75;
             newSize = 75;
         }
         
-        createGrid(); // Recreate the grid with the new size
+        createGrid(); 
         stopSimulation();
     }
 
-    // Attach event listeners to buttons and input
     startButton.addEventListener('click', startSimulation);
     stopButton.addEventListener('click', stopSimulation);
     clearButton.addEventListener('click', clearGrid);
     sizeInput.addEventListener('change', updateGridSize);
 
-    // Initialize the grid
+    clickColorInput.addEventListener('change', createGrid);
+    backgroundColorInput.addEventListener('change', createGrid);
+
     createGrid();
 });
