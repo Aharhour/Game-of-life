@@ -98,7 +98,7 @@
 }
 
 .count:after {
-    content: ' Likes';
+    content: '  Points';
     color: #CCC;
     font-size: 80%;
     font-weight: normal;

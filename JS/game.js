@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Reset score and update the display
             score = 0;
-            scoreDisplay.textContent = `Score: ${score}`;
+            scoreDisplay.textContent = score;
             prevStates = [];
         }
 
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Count all cells that are initially active and add to the score
             let initialLiveCount = cells.filter(cell => cell.classList.contains('active')).length;
             score += initialLiveCount;
-            scoreDisplay.textContent = `Score: ${score}`;
+            scoreDisplay.textContent = score;
         }
 
         function updateGrid() {
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add 1 point if there was a change in the grid state
             if (hasChanged) {
                 score += 1;
-                scoreDisplay.textContent = `Score: ${score}`;
+                scoreDisplay.textContent = score;
             }
 
             // Store the current state as the previous state for the next iteration
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cells.forEach(cell => cell.classList.remove('active'));
             stopSimulation();
             score = 0;
-            scoreDisplay.textContent = `Score: ${score}`;
+            scoreDisplay.textContent = score;
             prevStates = [];
         }
 
@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         createGrid();
     }
+    console.log(score);
 
     GameGrid();
 });

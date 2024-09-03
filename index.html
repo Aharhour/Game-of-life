@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/game.css">
     <link rel="stylesheet" href="CSS/leaderboard.css">
     <script src="JS/game.js" defer></script>
+    <script src="JS/LeaderBoard.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -26,7 +27,7 @@
             <button class="button-game" id="stop">Stop</button>
             <button class="button-game" id="clear">Clear</button>
             <label for="size">Grid Size:</label>
-            <p id="score">Score: 0</p>
+            <p>Score: <span id="score">0</span></p>
             <input type="number" id="size" value="50" min="10" max="100">
         </div>
         <div class="div-holders">
@@ -34,6 +35,10 @@
         </div>
     </div>
 
+    <div class='leaderboard'>
+        <h1><span>Leader Board</span></h1>
+        <div class="content"></div>
+    </div>
 
     <section class="producten" data-aos="fade-up">
         <div class="center-text">
