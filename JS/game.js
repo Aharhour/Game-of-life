@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(intervalId);
 
             if (score === 0) return;
-
+            localStorage.setItem('first', JSON.stringify(score));
             const scores = JSON.parse(localStorage.getItem('scores') || '[]');
 
             if (!scores.includes(score)) {
@@ -200,4 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     GameGrid();
+
+    // Voor aram
+    console.log(localStorage.getItem('first', score));
 });
