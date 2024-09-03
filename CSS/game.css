@@ -1,8 +1,16 @@
+.game-holder {
+    text-align: center;
+}
+
+.div-holders {
+    display: flex;
+}
+
 .controls {
     margin: 20px 0;
 }
 
-button {
+.button-game {
     margin: 5px;
     padding: 10px;
 }
@@ -21,5 +29,128 @@ button {
 }
 
 .cell.active {
-    background-color: #333; 
-} 
+    background-color: #333;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.leaderboard {
+    position: relative;
+    width: 70%;
+    height: 70%;
+    max-width: 960px;
+    min-width: 400px;
+    min-height: 600px;
+    margin: 30px auto 0 auto;
+    padding: 3%;
+    background: white;
+}
+
+.leaderboard h1 {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 30px;
+    padding: 0;
+    color: #cc7713;
+}
+
+.content {
+    position: relative;
+    width: 70%;
+    margin: 3px auto 0 auto;
+    min-width: 300px;
+}
+
+.content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 5px solid #CCC;
+    background: white;
+    border-radius: 20px;
+}
+
+.content ul li {
+    position: relative;
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    padding: 2% 5%;
+    border-bottom: 1px solid #555;
+    background: #f8f8f8;
+}
+
+.content ul li:last-child {
+    border-bottom: none;
+}
+
+.name {
+    color: #333;
+    font-weight: bold;
+}
+
+.count {
+    display: inline-block;
+    float: right;
+    color: #F00;
+    font-weight: bold;
+}
+
+.count:after {
+    content: '  Points';
+    color: #CCC;
+    font-size: 80%;
+    font-weight: normal;
+}
+
+.animate {
+    animation: flashIt 0.2s ease 1;
+}
+
+.animate .count {
+    animation: spinIt 0.3s ease 1;
+}
+
+@keyframes flashIt {
+    100% {
+        opacity: 0;
+        background-color: white;
+    }
+}
+
+@keyframes spinIt {
+    20% { transform: rotate(-10deg); }
+    40% { transform: rotate(10deg); }
+    60% { transform: rotate(-10deg); }
+    80% { transform: rotate(10deg); }
+    100% { transform: rotate(-10deg); }
+}
+
+.backbutton {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    z-index: 1000;
+}
+
+.backbutton img {
+    display: block;
+    width: 50px;
+    height: auto;
+}
+
+.player-section {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.player-section input {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.player-section button {
+    padding: 5px 10px;
+}

@@ -6,8 +6,8 @@
     <title>Grid Evolution</title>
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/game.css">
-    <link rel="stylesheet" href="CSS/leaderboard.css">
     <script src="JS/game.js" defer></script>
+    <script src="JS/LeaderBoard.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -31,8 +31,24 @@
         <input type="color" id="background-color">
         <label for="size">Grid Size:</label>
         <input type="number" id="size" value="50" min="10" max="100">
+    <div class="game-holder">
+        <div class="controls">
+            <button class="button-game" id="start">Start</button>
+            <button class="button-game" id="stop">Stop</button>
+            <button class="button-game" id="clear">Clear</button>
+            <label for="size">Grid Size:</label>
+            <input type="number" id="size" value="50" min="10" max="100">
+            <p>Score: <p id="score">0</p></p>
+        </div>
+        <div class="div-holders">
+            <div id="grid"></div>
+        </div>
     </div>
-    <div id="grid"></div>
+
+    <div class="leaderboard">
+        <h1><span>Leader Board</span></h1>
+        <div class="content"></div>
+    </div>
 
     <section class="producten" data-aos="fade-up">
         <div class="center-text">
@@ -86,25 +102,10 @@
         </div>
     </section>
 
-    <section class="newsletter">
-        <div class="newsletter-content" data-aos="zoom-in">
-            <div class="newsletter-text">
-                <h2>Pre-order now!</h2>
-                <p>Sign up with your email address to receive updates.</p>
-            </div>
-
-            <form action="email">
-                <input type="email" placeholder="Your email..." required>
-                <input type="submit" value="Subscribe" class="news-btn">
-            </form>
-        </div>
-    </section>
-
     <div class="copyright">
         <div class="end-text">
             <p>CopyRight 2024 By Oneliners</p>
         </div>
     </div>
-
 </body>
 </html>
