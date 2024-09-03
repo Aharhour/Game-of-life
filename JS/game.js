@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const backgroundColor = backgroundColorInput.value;
             cells.forEach(cell => {
                 cell.classList.remove('active');
-                cell.style.backgroundColor = backgroundColor; // Reset all cells to background color
+                cell.style.backgroundColor = backgroundColor; 
             });
             stopSimulation();
             updateScore(0);

@@ -17,16 +17,13 @@ Conway's Game of Life is a zero-player game that simulates the evolution of cell
 - **Initial Configurations:** Start with classic patterns (e.g., gliders, pulsars) or design your own.
 - **Step-by-Step Evolution:** Observe the grid evolve step by step or let it run continuously.
 - **Pause/Resume:** Pause the simulation at any time and resume when ready.
-- **Save/Load States:** Save the current state of the grid and load it later to continue.
+- **SaveStates:** Save the current state of the grid.
 - **Visual Display:** A graphical interface to visualize the cells as they evolve.
 - **Time-Line:** Navigate through the history of the simulation to review past states and patterns.
 - **Character Creator:** Customize the appearance of cells with unique designs or colors.
 - **Leaderboard:** Track high scores or notable patterns based on criteria like longevity or population size.
 
 ## Usage
-
-### Set Up Initial State:
-- Customize the grid size and initial configuration in the `config.json` file or use the default settings.
 
 ### Start the Simulation:
 - Run the game and watch how the grid evolves.
