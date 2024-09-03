@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const clearButton = document.getElementById('clear');
         const sizeInput = document.getElementById('size');
         const scoreDisplay = document.getElementById('score');
+        const clickColorInput = document.getElementById('color-click');
+        const backgroundColorInput = document.getElementById('background-color');
         const GameTimer = document.getElementById('gamespeed');
 
         let intervalId;
@@ -46,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Makes the grid by using the gridSize amount ( X, Y based ) and they are gonna be 20px by 20px
             gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 20px)`;
             gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 20px)`;
+            
+            const backgroundColor = backgroundColorInput.value;
+            gridContainer.style.backgroundColor = backgroundColor
 
             // Creates the cells array to hold each cell element
             cells = [];
@@ -54,7 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < gridSize * gridSize; i++) {
                 const cell = document.createElement('div');
                 cell.className = 'cell';
-                cell.addEventListener('click', () => cell.classList.toggle('active'));
+                cell.style.backgroundColor = backgroundColor;
+                cell.addEventListener('click', () => {
+                    const clickColor = clickColorInput.value;
+                    cell.classList.toggle('active');
+                    if (cell.classList.contains('active')) {
+                        cell.style.backgroundColor = clickColor; 
+                    } else {
+                        cell.style.backgroundColor = backgroundColor; 
+                    }
+                });
                 gridContainer.appendChild(cell);
                 cells.push(cell);
             }
@@ -77,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const newStates = [];
             let hasChanged = false;
+        
+            // Checks over each cell to decide its next state
 
             for (let i = 0; i < cells.length; i++) {
                 const isAlive = cells[i].classList.contains('active');
@@ -108,12 +124,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     hasChanged = true;
                 }
             }
-
+            const clickColor = clickColorInput.value;
+            const backgroundColor = backgroundColorInput.value;
+            // Apply the new state to each cell
             for (let i = 0; i < cells.length; i++) {
                 if (newStates[i]) {
                     cells[i].classList.add('active');
+                    cells[i].style.backgroundColor = clickColor; 
+
                 } else {
                     cells[i].classList.remove('active');
+                    cells[i].style.backgroundColor = backgroundColor; 
                 }
             }
 
@@ -148,7 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function clearGrid() {
-            cells.forEach(cell => cell.classList.remove('active'));
+            const backgroundColor = backgroundColorInput.value;
+            cells.forEach(cell => {
+                cell.classList.remove('active');
+                cell.style.backgroundColor = backgroundColor; // Reset all cells to background color
+            });
             stopSimulation();
             updateScore(0);
             prevStates = [];
@@ -168,6 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
         stopButton.addEventListener('click', stopSimulation);
         clearButton.addEventListener('click', clearGrid);
         sizeInput.addEventListener('change', updateGridSize);
+        clickColorInput.addEventListener('change', createGrid);
+        backgroundColorInput.addEventListener('change', createGrid);
 
         createGrid();
     }
