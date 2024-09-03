@@ -181,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         createGrid();
     }
+    console.log(score);
 
     GameGrid();
 });
