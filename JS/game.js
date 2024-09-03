@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Updates the score by adding the count of active cells to the current score
         function calculateInitialScore() {
             let initialLiveCount = cells.filter(cell => cell.classList.contains('active')).length;
-            updateScore(score + initialLiveCount);
+            updateScore(score + (initialLiveCount * 1000));
         }
 
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
             // If any cell state has changed, update the score
             if (hasChanged) {
-                updateScore(score + 1);
+                updateScore(score + 1000);
             }
         
             // Save the current state of the grid
