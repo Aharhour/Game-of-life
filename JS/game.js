@@ -19,11 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
         }
 
-        // Updates the score and displays it in the HTML and console.log
+        // Updates the score and displays it in the HTML
         function updateScore(newScore) {
             score = newScore;
             scoreDisplay.textContent = score;
-            console.log('Score:', score);
         }
 
         function createGrid() {
@@ -150,9 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
             intervalId = setInterval(updateGrid, 100);
         }
 
-        // Pauses the game
         function stopSimulation() {
             clearInterval(intervalId);
+
+            if (score === 0) return;
+
+            const scores = JSON.parse(localStorage.getItem('scores') || '[]');
+
+            if (!scores.includes(score)) {
+                scores.push(score);
+
+                localStorage.setItem('scores', JSON.stringify(scores));
+            }
         }
 
         // Clears all the active cells
@@ -161,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stopSimulation();
             updateScore(0);
             prevStates = [];
+            console.log(localStorage.getItem('scores'));
         }
 
         // Maximum size of the grid and updates the grid to match with the input of the user
@@ -181,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         createGrid();
     }
-    console.log(score);
 
     GameGrid();
 });
