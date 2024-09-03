@@ -1,47 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const gridContainer = document.getElementById('grid');
-    const startButton = document.getElementById('start');
-    const stopButton = document.getElementById('stop');
-    const clearButton = document.getElementById('clear');
-    const sizeInput = document.getElementById('size');
-    const cgitlickColorInput = document.getElementById('color-click');
-    const backgroundColorInput = document.getElementById('background-color');
-
-    function getGridSize() {
-        return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
-    }
-
-    let intervalId;
-    let cells = [];
-
-    // Create the grid with cells
-    function createGrid() {
-        const gridSize = getGridSize();
-        gridContainer.innerHTML = ''; // Clear previous grid
-        gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 20px)`;
-        gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 20px)`;
-
-        const backgroundColor = backgroundColorInput.value;
-        gridContainer.style.backgroundColor = backgroundColor; // Set the grid background color
-
-        cells = [];
-        for (let i = 0; i < gridSize * gridSize; i++) {
-            const cell = document.createElement('div');
-            cell.className = 'cell';
-            cell.id = 'cell';
-            cell.style.backgroundColor = backgroundColor;
-
-            cell.addEventListener('click', () => {
-                const clickColor = clickColorInput.value;
-                cell.classList.toggle('active');
-                if (cell.classList.contains('active')) {
-                    cell.style.backgroundColor = clickColor; // Set cell color to click color when active
-                } else {
-                    cell.style.backgroundColor = backgroundColor; // Reset cell color to background color when inactive
-                }
-            });
-            gridContainer.appendChild(cell);
-            cells.push(cell);
 
     function GameGrid() {
         // Gets and or creates all the elements for the game
@@ -235,4 +192,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     GameGrid();
-        });
+});
