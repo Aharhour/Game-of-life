@@ -88,18 +88,17 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateGrid() {
             // Get the current grid size from the input
             const gridSize = getGridSize();
-
+        
             const newStates = [];
             let hasChanged = false;
-        
+            
             // Checks over each cell to decide its next state
-
             for (let i = 0; i < cells.length; i++) {
                 const isAlive = cells[i].classList.contains('active');
                 let aliveNeighbors = 0;
                 const x = i % gridSize;
                 const y = Math.floor(i / gridSize);
-
+        
                 for (let dx = -1; dx <= 1; dx++) {
                     for (let dy = -1; dy <= 1; dy++) {
                         if (dx === 0 && dy === 0) continue;
@@ -113,42 +112,49 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }
-
+        
                 if (isAlive) {
                     newStates[i] = aliveNeighbors === 2 || aliveNeighbors === 3;
                 } else {
                     newStates[i] = aliveNeighbors === 3;
                 }
-
+        
                 if (isAlive !== newStates[i]) {
                     hasChanged = true;
                 }
             }
+        
             const clickColor = clickColorInput.value;
             const backgroundColor = backgroundColorInput.value;
+        
             // Apply the new state to each cell
             for (let i = 0; i < cells.length; i++) {
                 if (newStates[i]) {
                     cells[i].classList.add('active');
-                    cells[i].style.backgroundColor = clickColor; 
-
+                    cells[i].style.backgroundColor = clickColor;
                 } else {
                     cells[i].classList.remove('active');
-                    cells[i].style.backgroundColor = backgroundColor; 
+                    cells[i].style.backgroundColor = backgroundColor;
                 }
             }
-
+        
             if (hasChanged) {
-                updateScore(score + 1000);
+                // Count the number of active cells
+                const activeCellCount = cells.filter(cell => cell.classList.contains('active')).length;
+                // Add 1000 points if there is exactly one active cell
+                if (activeCellCount === 1) {
+                    updateScore(score + 1000);
+                }
             }
-
+        
             const currentState = cells.map(cell => cell.classList.contains('active'));
             prevStates.push(currentState);
-
+        
             if (prevStates.length > 2) {
                 prevStates.shift();
             }
         }
+        
 
         function startSimulation() {
             calculateInitialScore();
@@ -177,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stopSimulation();
             updateScore(0);
             prevStates = [];
+            window.location.reload()
         }
 
         function updateGridSize() {

@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Verkrijg de scores uit localStorage en parse ze van JSON
     const scoreArray = JSON.parse(localStorage.getItem('scores'));
 
+    // Controleer of scoreArray null of leeg is
+    if (scoreArray.length === 0) {
+        console.log('Niks in de Score array');
+        return;
+    }
+
     // Sorteer de scores in aflopende volgorde
     scoreArray.sort((a, b) => b - a);
 
