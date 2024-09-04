@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-
+        
         function startSimulation() {
             calculateInitialScore();
             intervalId = setInterval(updateGrid, timespeeds());
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('scores', JSON.stringify(scores));
             }
         }
-
+           
         function clearGrid() {
             const backgroundColor = backgroundColorInput.value;
             cells.forEach(cell => {
