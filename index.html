@@ -16,7 +16,7 @@
             <a href="index.html" class="logo">Grid Evolution</a>
             <ul class="navlist">
                 <li><a href="character-builder.html">Character builder</a></li>
-                <li><a href="https://github.com/Aharhour/Game-of-life">Reporsitory</a></li>
+                <li><a href="https://github.com/Aharhour/Game-of-life">Repository</a></li>
             </ul>
             <div class="avatar-container">
                 <img src="images/gerald-avatar.png" alt="Avatar" class="avatar" id="avatar">
@@ -29,17 +29,15 @@
 
 
     <section class="feature">
-
         <div class="center-text">
             <h2>Game Rules</h2>
         </div>
-        
+
         <div class="feature-content" data-aos="zoom-in">
             <div class="box">
                 <div class="f-icon">
                     <i class="ri-bank-card-fill"></i>
                 </div>
-
                 <div class="f-text">
                     <h3>Rule-1</h3>
                     <p>
@@ -52,7 +50,6 @@
                 <div class="f-icon">
                     <i class="ri-truck-fill"></i>
                 </div>
-
                 <div class="f-text">
                     <h3>Rule-2</h3>
                     <p>
@@ -65,7 +62,6 @@
                 <div class="f-icon">
                     <i class="ri-customer-service-fill"></i>
                 </div>
-
                 <div class="f-text">
                     <h3>Rule-3</h3>
                     <p>
@@ -84,11 +80,13 @@
             <button class="button-game" id="clear">Clear</button>
             <label for="color-click">Cell color:</label>
             <input type="color" id="color-click" value="#ffff">
+            <label for="color-click">Dot color:</label>
+            <input type="color" id="color-click" value="#000000">
             <label for="background-color">background color</label>
             <input type="color" id="background-color" value="#ff0000">
             <input type="range" id="gamespeed" min="10" max="300" value="150">
             <label for="size">Grid Size:</label>
-            <input type="number" id="size" value="50" min="10" max="100">
+            <input type="number" id="size" value="20" min="10" max="100">
             <p>Population: <p id="score">0</p></p>
         </div>
         <div class="div-holders">
@@ -96,14 +94,20 @@
         </div>
     </div>
 
-    <div class="leaderboard">
-        <h1><span>Leader Board</span></h1>
-        <div class="content"></div>
-    </div>
-
-    <div class="copyright">
-        <div class="end-text">
-            <p>CopyRight 2024 By Oneliners</p>
+    <div class="leaderbord-holder">
+        <div class="leaderbord">
+            <h1>Leaderboard</h1>
+                <div class="info-holder">
+                    <div class="nickname-holder" id="nickname">
+                        <div>test</div>
+                        <div>test</div>
+                        <div>test</div>
+                        <div>test</div>
+                        <div>test</div>
+                    </div>
+                    <div class="score-holder" id="scores">
+                    </div>
+                </div>
         </div>
     </div>
 </body>

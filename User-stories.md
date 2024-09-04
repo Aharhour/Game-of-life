@@ -18,20 +18,20 @@
 **wil ik** de simulatie kunnen pauzeren en hervatten,  
 **zodat** ik op elk moment de voortgang kan stoppen om het huidige patroon te bekijken en verder kan gaan wanneer ik klaar ben.
 
-### User Story 5: Opslaan/Laden van Statussen
+### User Story 5: MOET NOG KOMEN
 **Als** gebruiker,  
-**wil ik** de huidige staat van de simulatie kunnen opslaan en later laden,  
-**zodat** ik op elk moment kan stoppen en de simulatie op een later moment kan hervatten zonder voortgang te verliezen.
+**wil ik** MOET NOG KOMEN
+**zodat** MOET NOG KOMEN
 
 ### User Story 6: Visuele Weergave
 **Als** gebruiker,  
 **wil ik** een visuele interface hebben om de evolutie van de cellen te bekijken,  
 **zodat** ik de patronen duidelijk kan zien en begrijpen hoe ze zich in de tijd ontwikkelen.
 
-### User Story 7: Tijdlijn Navigatie
+### User Story 7: Score bijhouden
 **Als** gebruiker,  
-**wil ik** door de geschiedenis van de simulatie kunnen navigeren,  
-**zodat** ik eerdere toestanden van de celpatronen kan bekijken en analyseren.
+**wil ik** kunnen zien hoeveel scoren ik zou kunnen halen
+**zodat** ik kan vergelijken en bestuderen hoe het kan dat 1 meer heeft dan de ander.
 
 ### User Story 8: Personagemaker
 **Als** gebruiker,  
