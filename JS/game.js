@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     function GameGrid() {
-        // Gets and or creates all the elements for the game
         const gridContainer = document.getElementById('grid');
         const startButton = document.getElementById('start');
         const stopButton = document.getElementById('stop');
@@ -17,45 +15,38 @@ document.addEventListener('DOMContentLoaded', () => {
         let score = 0;
         let prevStates = [];
 
+        // Set up the game speed when the slider is adjusted, but do not start the simulation
         GameTimer.addEventListener('input', () => {
-            clearInterval(intervalId);
-            intervalId = setInterval(updateGrid, timespeeds());
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = setInterval(updateGrid, timespeeds());
+            }
         });
 
-        // Returns the grid size based on user input, clamped between 10 and 75.
-        function getGridSize() {
-            return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
-        }
-
-        // Function to calculate speed based on the sliders value
         function timespeeds() {
             return 1000 / GameTimer.value;
         }
 
-        // Updates the score and displays it in the HTML
+        function getGridSize() {
+            return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
+        }
+
         function updateScore(newScore) {
             score = newScore;
             scoreDisplay.textContent = score;
         }
 
         function createGrid() {
-            // Gets the size of the grid from the input element in the HTML
             const gridSize = getGridSize();
-
-            // Clear the grid
             gridContainer.innerHTML = '';
-
-            // Makes the grid by using the gridSize amount ( X, Y based ) and they are gonna be 20px by 20px
             gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 20px)`;
             gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 20px)`;
-            
-            const backgroundColor = backgroundColorInput.value;
-            gridContainer.style.backgroundColor = backgroundColor
 
-            // Creates the cells array to hold each cell element
+            const backgroundColor = backgroundColorInput.value;
+            gridContainer.style.backgroundColor = backgroundColor;
+
             cells = [];
 
-            // Create the grid by adding 'gridSize * gridSize' cells to the grid container
             for (let i = 0; i < gridSize * gridSize; i++) {
                 const cell = document.createElement('div');
                 cell.className = 'cell';
@@ -73,28 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 cells.push(cell);
             }
 
-            // Resets the score to 0 when grid is created
             updateScore(0);
-            // Clears previous states as the grid has been reset
             prevStates = [];
         }
 
-        // Updates the score by adding the count of active cells to the current score
         function calculateInitialScore() {
             let initialLiveCount = cells.filter(cell => cell.classList.contains('active')).length;
             updateScore(score + (initialLiveCount * 1000));
         }
 
-        let maxActiveCellCount = 0;
-
         function updateGrid() {
-            // Get the current grid size from the input
             const gridSize = getGridSize();
         
             const newStates = [];
             let hasChanged = false;
         
-            // Checks over each cell to decide its next state
             for (let i = 0; i < cells.length; i++) {
                 const isAlive = cells[i].classList.contains('active');
                 let aliveNeighbors = 0;
@@ -129,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const clickColor = clickColorInput.value;
             const backgroundColor = backgroundColorInput.value;
         
-            // Apply the new state to each cell
             for (let i = 0; i < cells.length; i++) {
                 if (newStates[i]) {
                     cells[i].classList.add('active');
@@ -142,9 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
             if (hasChanged) {
                 updateScore(score + 1000);
-                // Count the number of active cells
                 const activeCellCount = cells.filter(cell => cell.classList.contains('active')).length;
-                // Add 1000 points if there is exactly one active cell
                 if (activeCellCount === 1) {
                     updateScore(score + 1000);
                 }
@@ -157,15 +138,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 prevStates.shift();
             }
         }
-        
 
         function startSimulation() {
+            // Clear any existing interval before starting a new one
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
             calculateInitialScore();
             intervalId = setInterval(updateGrid, timespeeds());
         }
 
         function stopSimulation() {
             clearInterval(intervalId);
+            intervalId = null;
 
             if (score === 0) return;
             localStorage.setItem('first', JSON.stringify(score));
@@ -186,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stopSimulation();
             updateScore(0);
             prevStates = [];
-            window.location.reload()
+            window.location.reload();
         }
 
         function updateGridSize() {
@@ -198,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stopSimulation();
         }
 
+        // Add event listeners
         startButton.addEventListener('click', startSimulation);
         stopButton.addEventListener('click', stopSimulation);
         clearButton.addEventListener('click', clearGrid);
@@ -209,6 +195,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     GameGrid();
-
-    // console.log(localStorage.getItem('first', score));
 });
