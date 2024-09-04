@@ -175,6 +175,7 @@ function calculateInitialScore() {
         stopSimulation();
         updateScore(0);
         prevStates = [];
+        window.location.reload()
         // console.log(localStorage.getItem('scores'));
     }
 
