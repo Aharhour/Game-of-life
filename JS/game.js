@@ -177,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             stopSimulation();
             updateScore(0);
             prevStates = [];
-            console.log(localStorage.getItem('scores'));
         }
 
         function updateGridSize() {
@@ -201,6 +200,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     GameGrid();
 
-    // Voor aram
-    console.log(localStorage.getItem('first', score));
+    // console.log(localStorage.getItem('first', score));
 });

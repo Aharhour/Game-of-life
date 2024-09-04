@@ -24,6 +24,3 @@ document.addEventListener("DOMContentLoaded", () => {
         scoreTag.appendChild(scoreItem);
     });
 });
-
-// Log de scores uit localStorage voor debugging
-console.log(localStorage.getItem('scores'));
