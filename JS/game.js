@@ -85,13 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
             updateScore(score + (initialLiveCount * 1000));
         }
 
+        let maxActiveCellCount = 0;
+
         function updateGrid() {
             // Get the current grid size from the input
             const gridSize = getGridSize();
         
             const newStates = [];
             let hasChanged = false;
-            
+        
             // Checks over each cell to decide its next state
             for (let i = 0; i < cells.length; i++) {
                 const isAlive = cells[i].classList.contains('active');
@@ -139,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         
             if (hasChanged) {
+                updateScore(score + 1000);
                 // Count the number of active cells
                 const activeCellCount = cells.filter(cell => cell.classList.contains('active')).length;
                 // Add 1000 points if there is exactly one active cell
