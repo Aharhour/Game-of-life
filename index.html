@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,8 @@
     <script src="JS/script.js" defer></script>
 </head>
 <body>
-
     <div class="container">
+        <!-- Header van de pagina -->
         <header>
             <a href="index.html" class="logo">Grid Evolution</a>
             <ul class="navlist">
@@ -20,7 +20,7 @@
                 <li><a href="https://github.com/Aharhour/Game-of-life">Repository</a></li>
             </ul>
             <div class="avatar-container">
-                <img src="images/gerald-avatar.png" alt="Avatar" class="avatar" id="avatar">
+                <img src="" alt="Avatar" class="avatar" id="avatar">
                 <div class="dropdown-menu" id="dropdown-menu">
                     <a href="character-builder.html" id="change-character">Change Character</a>
                 </div>
@@ -28,18 +28,21 @@
         </header>
     </div>
 
+    <!-- Sectie met tips over het spel -->
     <section class="feature">
         <div class="center-text">
-            <h2>Game Rules</h2>
+            <h2>Tips!</h2>
         </div>
-
+        
         <div class="feature-content" data-aos="zoom-in">
+            <!-- Box met tips -->
             <div class="box">
                 <div class="f-icon">
                     <i class="ri-bank-card-fill"></i>
                 </div>
+
                 <div class="f-text">
-                    <h3>Rule-1</h3>
+                    <h3>Tip-1</h3>
                     <p>
                         A cell with 2 or 3 live neighbors will remain alive.
                     </p>
@@ -50,8 +53,9 @@
                 <div class="f-icon">
                     <i class="ri-truck-fill"></i>
                 </div>
+
                 <div class="f-text">
-                    <h3>Rule-2</h3>
+                    <h3>Tip-2</h3>
                     <p>
                         A cell with fewer than 2 or more than 3 live neighbors will die.
                     </p>
@@ -62,8 +66,9 @@
                 <div class="f-icon">
                     <i class="ri-customer-service-fill"></i>
                 </div>
+
                 <div class="f-text">
-                    <h3>Rule-3</h3>
+                    <h3>Tip-3</h3>
                     <p>
                         * A dead cell with exactly 3 live neighbors becomes alive.
                         * A dead cell with fewer or more than 3 live neighbors remains dead.
@@ -73,32 +78,48 @@
         </div>
     </section>
 
+    <!-- Game-sectie met controls en grid -->
     <div class="game-holder">
         <div class="controls">
             <button class="button-game" id="start">Start</button>
             <button class="button-game" id="stop">Stop</button>
             <button class="button-game" id="clear">Clear</button>
             <label for="color-click">Dot color:</label>
-            <input type="color" id="color-click" value="#000000">
-            <label for="background-color">background color</label>
+            <input type="color" id="color-click" value="#ffff">
+            <label for="background-color">Background color:</label>
             <input type="color" id="background-color" value="#ff0000">
             <input type="range" id="gamespeed" min="10" max="300" value="150">
             <label for="size">Grid Size:</label>
-            <input type="number" id="size" value="20" min="10" max="100">
+            <input type="number" id="size" value="50" min="10" max="100">
             <p>Population: <p id="score">0</p></p>
         </div>
         <div class="div-holders">
-            <div id="grid"></div>
+            <div id="grid"></div> <!-- Container voor het grid -->
         </div>
     </div>
 
+    <!-- Leaderboard-sectie -->
     <div class="leaderbord-holder">
         <div class="leaderbord">
-            <h1>High score</h1>
+            <h1>Leaderboard</h1>
                 <div class="info-holder">
+                    <div class="nickname-holder" id="nickname">
+                        <div>test</div>
+                        <div>test</div>
+                        <div>test</div>
+                        <div>test</div>
+                        <div>test</div>
+                    </div>
                     <div class="score-holder" id="scores">
                     </div>
                 </div>
+        </div>
+    </div>
+
+    <!-- Copyright-melding -->
+    <div class="copyright">
+        <div class="end-text">
+            <p>CopyRight 2024 By Oneliners</p>
         </div>
     </div>
 </body>

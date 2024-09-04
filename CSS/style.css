@@ -1,3 +1,4 @@
+/* Basisreset en standaardinstellingen voor alle elementen */
 * {
     padding: 0;
     margin: 0;
@@ -8,18 +9,19 @@
     font-family: "Poppins", sans-serif;
 }
 
+/* Root variabelen voor kleuren en lettergroottes */
 :root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --main-color: #f0f0f0;
-    --other-color: #ffc633;
-    --second-color: #616060;
+    --bg-color: #ffffff; /* Achtergrondkleur */
+    --text-color: #000000; /* Tekstkleur */
+    --main-color: #f0f0f0; /* Hoofdkleur */
+    --other-color: #ffc633; /* Andere kleur */
+    --second-color: #616060; /* Tweede kleur */
+    --h1-font: 5vw; /* Lettergrootte voor h1 */
+    --h2-font: 3.5vw; /* Lettergrootte voor h2 */
+    --p-font: 1rem; /* Lettergrootte voor paragrafen */
+} 
 
-    --h1-font: 5vw;
-    --h2-font: 3.5vw;
-    --p-font: 1rem;
-}
-
+/* Header-stijlen */
 header {
     width: 100%;
     display: flex;
@@ -29,6 +31,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Logo-stijlen */
 .logo {
     font-size: 2rem;
     font-weight: 800;
@@ -36,6 +39,7 @@ header {
     color: var(--text-color);
 }
 
+/* Navigatielijst stijlen */
 .navlist {
     display: flex;
 }
@@ -55,6 +59,7 @@ header {
     text-decoration: none;
 }
 
+/* Avatar stijlen */
 .avatar {
     vertical-align: middle;
     width: 5rem;
@@ -68,6 +73,7 @@ header {
     display: inline-block;
 }
 
+/* Dropdown-menu stijlen */
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -88,16 +94,16 @@ header {
     background-color: #f1f1f1;
 }
 
+/* Centrale tekst-stijlen */
 .center-text {
     text-align: center;
 }
 
 .center-text h2 {
     font-size: var(--h2-font);
-}   
+}
 
-
-
+/* Feature-content styling */
 .feature-content {
     display: flex;
     flex-wrap: wrap;
@@ -105,6 +111,7 @@ header {
     gap: 2%;
 }
 
+/* Box-stijlen voor tips */
 .box {
     flex: 1 1 calc(33.333% - 2%);
     min-width: 25%;
@@ -119,60 +126,18 @@ header {
     margin: 1%;
 }
 
-.f-icon i {
-    font-size: 2rem;
-    margin-right: 1rem;
-}
-
-.f-text h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.f-text p {
-    font-size: var(--p-font);
-    font-weight: 400;
-    color: var(--second-color);
-    line-height: 1.5;
-}
-
+/* Hover-effect voor de boxen */
 .box:hover {
     transform: translateY(-4px) scale(1.02);
     border-left: 0.5rem solid var(--text-color);
     cursor: pointer;
 }
 
-.copyright {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2%;
-    padding: 2% 10%;
-}
-
-@media (max-width: 1610px) {
-    header {
-        padding: 2% 5%;
-    }
-    section {
-        padding: 5% 5% 7%;
-    }
-    .brands {
-        padding: 2% 5%;
-    }
-    .feature {
-        padding: 1% 5% 1%;
-    }
-}
-
-/* STYLE VANAF HIER VOOR LEADERBORD */
-
+/* Leaderboard sectie stijlen */
 .leaderbord-holder {
     display: flex;
     justify-content: center;
-    margin:5em 0 2em 0;
+    margin: 5em 0 2em 0;
 }
 
 .leaderbord {
@@ -188,6 +153,63 @@ header {
 }
 
 .nickname-holder > div, .score-holder > div {
-    text-align: center;
-    margin-block: 10px;
+    margin: 5px;
+}
+
+/* Icon-stijlen in de boxen */
+.f-icon i {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+/* Tekst-stijlen in de boxen */
+.f-text h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.f-text p {
+    font-size: var(--p-font);
+    font-weight: 400;
+    color: var(--second-color);
+    line-height: 1.5;
+}
+
+/* Copyright sectie stijlen */
+.copyright {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2%;
+    padding: 2% 10%;
+}
+
+/* Media queries voor responsieve aanpassingen */
+@media (max-width: 1610px) {
+    header {
+        padding: 2% 5%;
+    }
+    section {
+        padding: 5% 5% 7%;
+    }
+    .brands {
+        padding: 2% 5%;
+    }
+    .feature {
+        padding: 1% 5% 1%;
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        flex: 1 1 calc(50% - 2%);
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        flex: 1 1 100%;
+    }
 }

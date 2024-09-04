@@ -3,38 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link naar de CSS stylesheet voor styling van de pagina -->
     <link rel="stylesheet" href="CSS/character-builder.css">
-    <script src="JS/character-builder.js"></script>
+    <!-- Link naar de JavaScript bestand voor interactieve functionaliteit -->
+    <script src="JS/character-builder.js" defer></script>
     <title>Character-builder</title>
 </head>
 <body>
+    <!-- Hoofdcontainer voor de pagina -->
     <div class="container">
+        <!-- Header sectie met logo en navigatielijst -->
         <header>
+            <!-- Logo link naar de character-builder pagina -->
             <a href="character-builder.html" class="logo">Character Builder</a>
+            <!-- Navigatielijst met links naar andere pagina's en repositories -->
             <ul class="navlist">
                 <li><a href="index.html">Grid Evolution</a></li>
                 <li><a href="https://github.com/Aharhour/Game-of-life">Repository</a></li>
             </ul>
         </header>
     </div>
-<div id="info">
+
+    <!-- Informatie sectie voor het tonen van character bio -->
+    <div id="info">
         <h2>Character Bio:</h2>
         <p id="bio">Select a character</p>
     </div>
+    
+    <!-- Hoofdcontainer voor karakterafbeelding en knoppen -->
     <div id="container">
+        <!-- Afbeeldingscontainer met een naam en afbeelding -->
         <div id="image">
             <h1 id="name">Geralt of Rivia</h1>
             <img id="img" src="images/gerald.png" alt="">
         </div>
         
+        <!-- Knoppen om karakter te veranderen -->
         <div id="controls">
-            <button id="Geralt" onclick="ChangeCharacter('Geralt')">Geralt of Rivia</button>
-            <button id="Triss" onclick="ChangeCharacter('Triss')">Triss Merigold</button>
-            <button id="Vesemir" onclick="ChangeCharacter('Vesemir')">Vesemir Bodnia</button>
-            <button id="Caesar" onclick="ChangeCharacter('Caesar')">Caesar Czar</button>
-            <button id="Yennefer" onclick="ChangeCharacter('Yennefer')">Yennefer of Vengerberg</button>
+            <button id="Geralt" onclick="handleClick(event)">Geralt of Rivia</button>
+            <button id="Triss" onclick="handleClick(event)">Triss Merigold</button>
+            <button id="Vesemir" onclick="handleClick(event)">Vesemir Bodnia</button>
+            <button id="Caesar" onclick="handleClick(event)">Caesar Czar</button>
+            <button id="Yennefer" onclick="handleClick(event)">Yennefer of Vengerberg</button>
         </div>
     </div>
-
 </body>
 </html>

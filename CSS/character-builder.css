@@ -1,3 +1,4 @@
+/* reset de standaard stijlen van elementen op de hele pagina */
 * {
     padding: 0;
     margin: 0;
@@ -8,6 +9,7 @@
     font-family: "Poppins", sans-serif;
 }
 
+/* voor consistente kleuren, lettergroottes en randstijlen door de hele stylesheet heen. */
 :root {
     --bg-color: #ffffff;
     --text-color: #000000;
@@ -21,6 +23,7 @@
     --border-width: 10px;
 }
 
+/* keyframe-animatie genaamd scroll die de achtergrondpositie animeert */
 @keyframes scroll {
     0% {
         background-position: 0 0;
@@ -30,6 +33,7 @@
     }
 }
 
+/* sectie stijlt de navbar */
 #container, #info {
     width: 80%;
     height: 45rem;
@@ -42,15 +46,13 @@
     overflow: hidden;
 }
 
+/* sectie stijlt de Character Bio */
 #info {
     height: 6rem;
     color: white;
 }
 
-.container {
-    padding-bottom: 10px;
-}
-
+/* header stijl, inclusief logo en navigatiebalk */
 header {
     width: 100%;
     display: flex;
@@ -61,6 +63,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* stijl voor de logo binnen de header */
 .logo {
     font-size: 1.8rem;
     font-weight: 800;
@@ -68,11 +71,13 @@ header {
     color: var(--text-color);
 }
 
+/* stijl voor de navigatielijst binnen de header */
 .navlist {
     display: flex;
     gap: 1.5rem;
 }
 
+/* stijl voor links in de navigatielijst */
 .navlist a {
     font-size: var(--p-font);
     font-weight: 500;
@@ -82,6 +87,7 @@ header {
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
+/* hover en focus staat voor navigatielinks */
 .navlist a:hover,
 .navlist a:focus {
     color: var(--bg-color);
@@ -90,18 +96,21 @@ header {
     transform: translateY(-3px);
 }
 
+/* keyframe-animatie genaamd scroll die de achtergrondpositie animeert */
 @keyframes scroll {
     to {
         background-position: -150px -150px;
     }
 }
 
+/* keyframe-animatie genaamd gloweffect die een gloei-effect toevoegt aan afbeeldingen */
 @keyframes gloweffect {
     0%, 100% { filter: drop-shadow(0 0 0.35rem rgb(0, 174, 255)); }
     25% { filter: drop-shadow(0 0 0.65rem rgb(0, 255, 4)); }
     50% { filter: drop-shadow(0 0 0.85rem rgb(255, 0, 0)); }
 }
 
+/* stijl voor het afbeeldingscontainer */
 #image {
     height: 90%;
     width: 100%;
@@ -109,6 +118,7 @@ header {
     position: relative;
 }
 
+/* stijl voor afbeeldingen binnen het afbeeldingscontainer */
 img {
     margin-top: 10px;
     height: auto;
@@ -116,6 +126,7 @@ img {
     animation: gloweffect 2s infinite;
 }
 
+/* stijl voor de naam binnen het afbeeldingscontainer */
 #name {
     position: absolute;
     z-index: 9999;
@@ -130,6 +141,7 @@ img {
     text-align: center;
 }
 
+/* stijl voor knoppen */
 button {
     position: relative;
     display: inline-block;
@@ -145,6 +157,7 @@ button {
     transition: transform 0.3s, font-size 0.3s;
 }
 
+/* stijl voor de pseudo-elementen van knoppen */
 button:after {
     content: '';
     position: absolute;
@@ -156,32 +169,39 @@ button:after {
     border-radius: 10px;
 }
 
+/* hover staat voor knoppen */
 button:hover {
     color: black;
     font-size: 24px;
     transform: translateY(-2px);
 }
 
+/* achtergrondkleur voor de Geralt knop */
 #Gerald {
     background-image: linear-gradient(blue, skyblue);
 }
 
+/* achtergrondkleur voor de Triss knop */
 #Triss {
     background-image: linear-gradient(rgb(255, 145, 0), rgb(235, 232, 135));
 }
 
+/* achtergrondkleur voor de Vesemir knop */
 #Vesemir {
     background-image: linear-gradient(red, salmon);
 }
 
+/* achtergrondkleur voor de Caesar knop */
 #Caesar {
     background-image: linear-gradient(rgb(223, 13, 13), rgb(9, 4, 9));
 }
 
+/* achtergrondkleur voor de Yennefer knop */
 #Yennefer {
     background-image: linear-gradient(rgb(206, 200, 140), rgb(149, 149, 14));
 }
 
+/* responsive stijlen voor schermen tot 1024px breedte */
 @media (max-width: 1024px) {
     #container, #info {
         height: 400px;
@@ -202,6 +222,7 @@ button:hover {
     }
 }
 
+/* responsive stijlen voor schermen tot 768px breedte */
 @media (max-width: 768px) {
     #container, #info {
         height: 350px;
@@ -233,6 +254,7 @@ button:hover {
     }
 }
 
+/* responsive stijlen voor schermen tot 480px breedte */
 @media (max-width: 480px) {
     #container, #info {
         height: 250px;
