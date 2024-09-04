@@ -176,7 +176,6 @@ function calculateInitialScore() {
         updateScore(0);
         prevStates = [];
         window.location.reload()
-        // console.log(localStorage.getItem('scores'));
     }
 
     function updateGridSize() {
@@ -200,6 +199,5 @@ function calculateInitialScore() {
 
 GameGrid();
 
-// Voor aram
 // console.log(localStorage.getItem('first', score));
 });
