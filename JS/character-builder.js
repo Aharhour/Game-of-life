@@ -45,27 +45,27 @@ function ChangeCharacter(character) {
         case "Geralt":
             document.getElementById("img").src = "images/gerald.png";
             document.getElementById("name").innerHTML = "Geralt of Rivia";
-            document.getElementById("bio").innerHTML = "Geralt of Rivia is a wandering arcane warrior...";
+            document.getElementById("bio").innerHTML = "Geralt of Rivia is a wandering arcane warrior, known for his exceptional skill in both swordsmanship and sorcery. With a weathered demeanor and striking white hair, he roams the land as a seasoned monster hunter and mercenary. Geralt combines his mastery of combat with a deep understanding of ancient magic.";
             break;
         case "Triss":
             document.getElementById("img").src = "images/triss.png";
             document.getElementById("name").innerHTML = "Triss Merigold";
-            document.getElementById("bio").innerHTML = "Triss Merigold is a formidable battlemage angel...";
+            document.getElementById("bio").innerHTML = "Triss Merigold is a formidable battlemage angel, renowned for her mastery of both arcane and celestial powers. With radiant wings that shimmer like the dawn and eyes that spark with magical intensity, she blends divine grace with unparalleled combat prowess.";
             break;
         case "Vesemir":
             document.getElementById("img").src = "images/vesemir.png";
             document.getElementById("name").innerHTML = "Vesemir Bodnia";
-            document.getElementById("bio").innerHTML = "Vesemir Bodnia is one of the oldest and most experienced generals...";
+            document.getElementById("bio").innerHTML = "Vesemir Bodnia is one of the oldest and most experienced generals in the realm, born into a lineage renowned for its formidable warriors. His name is synonymous with wisdom and battle-hardened expertise. With a weathered face and eyes that have witnessed countless conflicts, Vesemir commands deep respect from both allies and adversaries.";
             break;
         case "Caesar":
             document.getElementById("img").src = "images/caesar.png";
             document.getElementById("name").innerHTML = "Caesar Czar";
-            document.getElementById("bio").innerHTML = "Caesar Czar is a formidable leader and cunning strategist...";
+            document.getElementById("bio").innerHTML = "Caesar Czar, a wolf mutant warrior, stands as a towering figure in both stature and influence. His sleek, silvery fur and piercing yellow eyes command respect and fear. As a formidable leader, Caesar combines his exceptional combat skills with a keen strategic mind, orchestrating battles with precision and foresight.";
             break;
         case "Yennefer":
             document.getElementById("img").src = "images/yennefer.png";
             document.getElementById("name").innerHTML = "Yennefer of Vengerberg";
-            document.getElementById("bio").innerHTML = "Yennefer of Vengerberg is a powerful and enigmatic sorceress...";
+            document.getElementById("bio").innerHTML = "Yennefer of Vengerberg is a powerful and enigmatic sorceress, renowned for her extraordinary magical prowess and compelling charisma. With strikingly blond hair and her piercing green eyes, she commands both awe and intrigue. Yennefer’s mastery of arcane arts allows her to manipulate elements, weave intricate spells, and influence the course of events with a mere thought. ";
             break;
     }
 }
