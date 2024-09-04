@@ -188,5 +188,6 @@ header {
 }
 
 .nickname-holder > div, .score-holder > div {
-    margin: 5px;
+    text-align: center;
+    margin-block: 10px;
 }
