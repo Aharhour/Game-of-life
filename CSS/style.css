@@ -167,5 +167,26 @@ header {
     }
 }
 
+/* STYLE VANAF HIER VOOR LEADERBORD */
 
-  
+.leaderbord-holder {
+    display: flex;
+    justify-content: center;
+    margin:5em 0 2em 0;
+}
+
+.leaderbord {
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: rgb(200, 200, 200);
+}
+
+.info-holder {
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nickname-holder > div, .score-holder > div {
+    margin: 5px;
+}
