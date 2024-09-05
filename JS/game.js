@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let isRunning = false;
         let countdown = 30;
         let prevStates = [];
+        let maxActiveCells = 20;
+        let placedCells = 0;
 
         // Update game speed based on slider input
         gameTimer.addEventListener('input', () => {
@@ -58,17 +60,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cell = document.createElement('div');
                 cell.className = 'cell';
                 cell.style.backgroundColor = backgroundColor;
-                cell.addEventListener('click', () => {
-                    const clickColor = clickColorInput.value;
-                    cell.classList.toggle('active');
-                    cell.style.backgroundColor = cell.classList.contains('active') ? clickColor : backgroundColor;
-                });
+                cell.addEventListener('click', () => handleCellClick(cell));
                 gridContainer.appendChild(cell);
                 cells.push(cell);
             }
 
             updateScore(0);
             prevStates = [];
+            placedCells = 0; // Reset placed cells count
+        }
+
+        // Handle cell clicks to toggle 'active' state, limit to 20 cells before starting
+        function handleCellClick(cell) {
+            if (isRunning) return; // Disable cell clicks once the game has started
+
+            if (!cell.classList.contains('active') && placedCells >= maxActiveCells) {
+                alert(`You can only activate a maximum of ${maxActiveCells} cells before starting the game.`);
+                return; // Prevent placing more than 20 active cells
+            }
+
+            const clickColor = clickColorInput.value;
+            const backgroundColor = backgroundColorInput.value;
+            cell.classList.toggle('active');
+            if (cell.classList.contains('active')) {
+                cell.style.backgroundColor = clickColor;
+                placedCells++;
+            } else {
+                cell.style.backgroundColor = backgroundColor;
+                placedCells--;
+            }
         }
 
         // Calculate score based on active cells
@@ -162,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.style.backgroundColor = backgroundColor;
             });
             updateScore(0);
+            placedCells = 0; // Reset placed cells count
         }
 
         // Start countdown timer for the game
