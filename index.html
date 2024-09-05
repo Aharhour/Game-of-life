@@ -84,25 +84,33 @@
     <!-- Game-sectie met controls en grid -->
     <div class="game-holder">
         <div class="center-text">
-            <h2>Game controls</h2>
+            <h2>Game Controls</h2>
         </div>
         <div class="box-game">
-            
-            <div class="controls">
-                <button class="button-game" id="toggle-mode">Switch to Game Mode</button> 
-                <button class="button-game" id="start">Start</button>
-                <button class="button-game" id="stop">Stop</button>
-                <button class="button-game" id="clear">Clear</button>
-                <label for="color-click">Cell color:</label>
-                <input type="color" id="color-click" value="#000000">
-                <label for="background-color">Background color:</label>
-                <input type="color" id="background-color" value="#ff0000">
-                <input type="range" id="gamespeed" min="10" max="300" value="150">
-                <label for="size">Grid Size:</label>
-                <input type="number" id="size" value="10" min="10" max="100">
-                <div id="game-elements" style="display: none;"> <!-- Hide these by default for Free Play -->
-                    <p>Timer: <p id="timer">15</p></p>
-                    <p>Population: <p id="score">0</p></p>
+            <div class="row box color-speed-box">
+                <div class="color-speed-controls">
+                    <label for="color-click">Cell color:</label>
+                    <input type="color" id="color-click" value="#000000">
+                    <label for="background-color">Background color:</label>
+                    <input type="color" id="background-color" value="#ff0000">
+                    <label for="gamespeed">Speed:</label>
+                    <input type="range" id="gamespeed" min="10" max="300" value="150">
+                </div>
+            </div>
+            <div class="row box grid-timer-population-box">
+                <div class="grid-timer-population">
+                    <label for="size">Grid Size:</label>
+                    <input type="number" id="size" value="10" min="10" max="100">
+                    <div id="game-elements" style="display: none;"> <!-- Hide these by default for Free Play -->
+                        <p>Timer: <p id="timer">15</p></p>
+                        <p>Population: <p id="score">0</p></p>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button class="button-game" id="toggle-mode">Switch to Game Mode</button> 
+                    <button class="button-game" id="start">Start</button>
+                    <button class="button-game" id="stop">Stop</button>
+                    <button class="button-game" id="clear">Clear</button>
                 </div>
             </div>
         </div>
@@ -110,6 +118,9 @@
             <div id="grid"></div> <!-- Container voor het grid -->
         </div>
     </div>
+    
+    
+    
     
 
     <!-- Leaderboard-sectie -->
