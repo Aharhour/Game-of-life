@@ -14,7 +14,7 @@
 <body>
  
         <!-- Header van de pagina -->
-    <header>
+    <header>xx  
         <a href="indeqx.html" class="logo">Grid Evolution</a>
         <ul class="navlist">
             <li><a class="nav-a" href="character-builder.html">Character builder</a></li>
@@ -89,6 +89,7 @@
         <div class="box-game">
             
             <div class="controls">
+                <button class="button-game" id="toggle-mode">Switch to Game Mode</button> 
                 <button class="button-game" id="start">Start</button>
                 <button class="button-game" id="stop">Stop</button>
                 <button class="button-game" id="clear">Clear</button>
@@ -99,8 +100,10 @@
                 <input type="range" id="gamespeed" min="10" max="300" value="150">
                 <label for="size">Grid Size:</label>
                 <input type="number" id="size" value="10" min="10" max="100">
-                <p>Timer: <p id="timer">15</p></p>
-                <p>Population: <p id="score">0</p></p>
+                <div id="game-elements" style="display: none;"> <!-- Hide these by default for Free Play -->
+                    <p>Timer: <p id="timer">15</p></p>
+                    <p>Population: <p id="score">0</p></p>
+                </div>
             </div>
         </div>
         <div class="div-holders">

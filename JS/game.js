@@ -4,22 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const startButton = document.getElementById('start');
         const stopButton = document.getElementById('stop');
         const clearButton = document.getElementById('clear');
-        const sizeInput = document.getElementById('size');
+        const sizeInput = document.getElementById('size'); // The grid size input element
         const scoreDisplay = document.getElementById('score');
         const clickColorInput = document.getElementById('color-click');
         const backgroundColorInput = document.getElementById('background-color');
         const gameTimer = document.getElementById('gamespeed');
         const timerDisplay = document.getElementById('timer');
+        const toggleModeButton = document.getElementById('toggle-mode'); // Button for mode toggle
+        const gameElements = document.getElementById('game-elements'); // Timer and score container
 
         let intervalId = null;
         let countdownInterval = null;
         let cells = [];
         let score = 0;
         let isRunning = false;
-        let countdown = 15;
+        let countdown = 30;
         let prevStates = [];
         let maxActiveCells = 20;
         let placedCells = 0;
+        let isGameMode = false; // Default is Free Play mode
 
         // Update game speed based on slider input
         gameTimer.addEventListener('input', () => {
@@ -29,10 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Toggle between Game Mode and Free Play Mode
+        toggleModeButton.addEventListener('click', () => {
+            isGameMode = !isGameMode;
+            if (isGameMode) {
+                toggleModeButton.textContent = "Switch to Free Play";
+                gameElements.style.display = 'block'; // Show timer and score
+                placedCells = 0; // Reset placed cells in game mode
+            } else {
+                toggleModeButton.textContent = "Switch to Game Mode";
+                gameElements.style.display = 'none'; // Hide timer and score
+            }
+        });
+
         // Grid size logic
         function getGridSize() {
             return Math.min(Math.max(parseInt(sizeInput.value, 10), 10), 75);
         }
+
+        // Event listener to recreate the grid whenever the size input is changed
+        sizeInput.addEventListener('input', createGrid);
 
         // Return game speed based on input
         function getGameSpeed() {
@@ -47,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Save score to localStorage
         function saveScoreToLocalStorage() {
-            if (score > 0) {
+            if (score > 0 && isGameMode) { // Only save score in game mode
                 const scores = JSON.parse(localStorage.getItem('scores') || '[]');
                 scores.push(score);
                 localStorage.setItem('scores', JSON.stringify(scores));
@@ -79,13 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
             placedCells = 0; // Reset placed cells count
         }
 
-        // Handle cell clicks to toggle 'active' state, limit to 20 cells before starting
+        // Handle cell clicks to toggle 'active' state
         function handleCellClick(cell) {
             if (isRunning) return; // Disable cell clicks once the game has started
 
-            if (!cell.classList.contains('active') && placedCells >= maxActiveCells) {
-                alert(`You can only activate a maximum of ${maxActiveCells} cells before starting the game.`);
-                return; // Prevent placing more than 20 active cells
+            if (isGameMode && !cell.classList.contains('active') && placedCells >= maxActiveCells) {
+                alert(`You can only activate a maximum of ${maxActiveCells} cells in Game Mode.`);
+                return; // Prevent placing more than maxActiveCells in game mode
             }
 
             const clickColor = clickColorInput.value;
@@ -93,17 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.classList.toggle('active');
             if (cell.classList.contains('active')) {
                 cell.style.backgroundColor = clickColor;
-                placedCells++;
+                if (isGameMode) placedCells++;
             } else {
                 cell.style.backgroundColor = backgroundColor;
-                placedCells--;
+                if (isGameMode) placedCells--;
             }
-        }
-
-        // Calculate score based on active cells
-        function calculateInitialScore() {
-            let initialLiveCount = cells.filter(cell => cell.classList.contains('active')).length;
-            updateScore(score + (initialLiveCount * 1000));
         }
 
         // Update grid state for the next step
@@ -167,45 +180,53 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isRunning) return; // Prevent multiple starts
             isRunning = true;
 
-            calculateInitialScore();
+            if (isGameMode) {
+                calculateInitialScore();
+                startCountdown();
+            }
+
             intervalId = setInterval(updateGrid, getGameSpeed());
-            startCountdown();
         }
 
         // Stop the simulation
         function stopSimulation() {
             if (!isRunning) return;
-
             clearInterval(intervalId);
-            clearInterval(countdownInterval);
             isRunning = false;
-            intervalId = null;
-            saveScoreToLocalStorage(); // Save score when simulation stops
+
+            if (isGameMode) {
+                clearInterval(countdownInterval);
+                saveScoreToLocalStorage(); // Save score when game stops
+            }
         }
 
-        // Clear the grid and stop the simulation
+        // Clear the grid
         function clearGrid() {
             stopSimulation();
-            const backgroundColor = backgroundColorInput.value;
-            cells.forEach(cell => {
-                cell.classList.remove('active');
-                cell.style.backgroundColor = backgroundColor;
-            });
+            cells.forEach(cell => cell.classList.remove('active'));
             updateScore(0);
-            placedCells = 0; // Reset placed cells count
+            placedCells = 0;
         }
 
-        // Start countdown timer for the game
+        // Calculate initial score based on placed cells
+        function calculateInitialScore() {
+            const initialActiveCells = cells.filter(cell => cell.classList.contains('active')).length;
+            updateScore(initialActiveCells * 100); // Example score calculation
+        }
+
+        // Start the countdown timer in game mode
         function startCountdown() {
-            countdown = 15;
+            countdown = 30;
             timerDisplay.textContent = countdown;
 
             countdownInterval = setInterval(() => {
                 countdown--;
                 timerDisplay.textContent = countdown;
+
                 if (countdown <= 0) {
+                    clearInterval(countdownInterval);
                     stopSimulation();
-                    clearGrid();
+                    alert('Game over! Your final score is ' + score);
                 }
             }, 1000);
         }
@@ -214,12 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
         startButton.addEventListener('click', startSimulation);
         stopButton.addEventListener('click', stopSimulation);
         clearButton.addEventListener('click', clearGrid);
-        sizeInput.addEventListener('change', createGrid);
-        clickColorInput.addEventListener('change', createGrid);
-        backgroundColorInput.addEventListener('change', createGrid);
 
+        // Initialize the grid
         createGrid();
     }
 
     GameGrid();
 });
+
+

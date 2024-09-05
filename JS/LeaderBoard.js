@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreArray.sort((a, b) => b - a);
 
     // Get the top 5 scores
-    const topScore = scoreArray.slice(0, 5); // Instead of using forEach, slice can extract the top 5 directly
+    const topScore = scoreArray.slice(0, 10); // Instead of using forEach, slice can extract the top 5 directly
 
     // Add each score to the DOM
     topScore.forEach(score => {
