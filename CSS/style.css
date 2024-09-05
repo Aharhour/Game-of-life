@@ -157,13 +157,14 @@ li a:focus {
     cursor: pointer;
 }
 
-
 .leaderbord-holder {
     display: flex;
     justify-content: center;
     margin: 5em 0 2em;
     padding: 0 5%;
     width: 100%;
+    box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .leaderbord {
@@ -386,7 +387,6 @@ footer .container {
 }
 
 .footer-container p a {
-
     color: #8c52ff;
     padding: 20px;
     cursor: pointer;
