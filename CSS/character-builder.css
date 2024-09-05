@@ -22,7 +22,7 @@ body {
     overflow-x: hidden;
 }
 
-/* header stijl, inclusief logo en navigatiebalk */
+/* Header-stijlen */
 header {
     width: 100%;
     display: flex;
@@ -33,57 +33,50 @@ header {
     flex-wrap: wrap;
 }
 
-/* Stijl voor de logo binnen de header */
-.logo {
-    font-size: 2rem;
-    flex: 1;
-    color: #ffdd00;
-    text-transform: uppercase;
-}
-
 /* Navigatielijst stijlen */
 .navlist {
     display: flex;
     justify-content: space-around;
-    gap: 1.5rem;
     flex-wrap: wrap;
 }
 
-/* Stijl voor links in de navigatielijst */
-.navlist a {
+.navlist li a {
+    text-decoration: none;
     color: #fff090;
     padding: 0.5rem 1rem;
-    border-radius: 0.3rem;
-    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
     display: inline-block;
 }
 
-/* Hover- en focus-effect voor links in de navigatielijst */
-.navlist a:hover,
-.navlist a:focus {
-    color: white;
+/* Hover- en focus-effecten voor links */
+.navlist li a:hover,
+.navlist li a:focus {
+    cursor: pointer;
     background-color: rgba(0, 0, 0, 0.4);
     transform: scale(1.1);
-    text-decoration: none;
 }
 
-/* Keyframe-animatie genaamd scroll */
-@keyframes scroll {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 100% 100%;
-    }
+/* Logo-stijlen */
+.logo {
+    font-size: 2rem;
+    color: #ffdd00;
 }
 
-/* Keyframe-animatie genaamd gloweffect */
-@keyframes gloweffect {
-    0%, 100% { filter: drop-shadow(0 0 0.35rem rgb(0, 174, 255)); }
-    25% { filter: drop-shadow(0 0 0.65rem rgb(0, 255, 4)); }
-    50% { filter: drop-shadow(0 0 0.85rem rgb(255, 0, 0)); }
+/* Avatar-stijlen */
+.avatar {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
+.avatar-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Info-box stijlen */
 #info {
     display: flex;
     align-items: center;
@@ -97,15 +90,13 @@ header {
     transition: transform 0.3s ease-in-out;
 }
 
-h3 {
-    color: #453e14;
-}
-
-/* Hover-effect voor de boxen */
 #info:hover {
     transform: translateY(-4px) scale(1.02);
-    border-left: 0.5rem solid;
     cursor: pointer;
+}
+
+#info h3 {
+    color: #453e14;
 }
 
 /* Afbeeldingscontainer */
@@ -114,14 +105,21 @@ h3 {
     width: 35rem;
 }
 
-/* Afbeeldingen binnen het afbeeldingscontainer */
-img {
+#image img {
     height: 100%;
     width: auto;
     max-width: 100%;
     animation: gloweffect 2s infinite;
 }
 
+/* Keyframe-animaties */
+@keyframes gloweffect {
+    0%, 100% { filter: drop-shadow(0 0 0.35rem rgb(0, 174, 255)); }
+    25% { filter: drop-shadow(0 0 0.65rem rgb(0, 255, 4)); }
+    50% { filter: drop-shadow(0 0 0.85rem rgb(255, 0, 0)); }
+}
+
+/* Controls-sectie stijlen */
 #controls {
     display: flex;
     justify-content: center;
@@ -132,7 +130,7 @@ img {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Sectie voor de naam binnen het afbeeldingscontainer */
+/* Naam binnen afbeeldingscontainer */
 #name {
     position: absolute;
     z-index: 9999;
@@ -147,7 +145,7 @@ img {
     transition: font-size 0.3s ease;
 }
 
-/* Stijl voor knoppen */
+/* Knoppen stijlen */
 button {
     margin-top: 10px;
     padding: 12px 30px;
@@ -155,13 +153,12 @@ button {
     font-size: 22px;
     font-weight: bold;
     border-radius: 12px;
-    border: 2px solid #221;;
+    border: 2px solid #221;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, font-size 0.3s, box-shadow 0.3s, background 0.3s;
     cursor: pointer;
 }
 
-/* Hover-effect voor knoppen */
 button:hover {
     background-color: #221;
     color: #fff; 
@@ -170,45 +167,43 @@ button:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Actief effect voor knoppen */
 button:active {
     transform: translateY(0);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsieve naam aanpassingen */
+/* Responsieve stijlen */
 @media (max-width: 1200px) {
     #name {
-        font-size: 40pt; /* Kleiner lettertype op kleinere schermen */
+        font-size: 40pt;
         left: 20%;
     }
 }
 
 @media (max-width: 768px) {
     #name {
-        font-size: 35pt; /* Nog kleiner op tablets */
+        font-size: 35pt;
         left: 15%;
     }
 
     button {
-        font-size: 20px; /* Kleiner lettertype voor knoppen op tablets */
+        font-size: 20px;
         padding: 10px 25px;
     }
 }
 
 @media (max-width: 480px) {
     #name {
-        font-size: 30pt; /* Kleiner lettertype op mobiele telefoons */
+        font-size: 30pt;
         left: 10%;
     }
 
     button {
-        font-size: 18px; /* Kleinere knoppen op mobiele telefoons */
+        font-size: 18px;
         padding: 8px 20px;
     }
 }
 
-/* Responsive stijlen voor schermen tot 1024px breedte */
 @media (max-width: 1024px) {
     .logo {
         font-size: 1.5rem;

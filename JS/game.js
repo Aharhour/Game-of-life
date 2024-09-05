@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let cells = [];
         let score = 0;
         let isRunning = false;
-        let countdown = 15;
+        let countdown = 30;
         let prevStates = [];
         let maxActiveCells = 20;
         let placedCells = 0;
@@ -43,15 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateScore(newScore) {
             score = newScore;
             scoreDisplay.textContent = score;
-        }
-
-        // Save score to localStorage
-        function saveScoreToLocalStorage() {
-            if (score > 0) {
-                const scores = JSON.parse(localStorage.getItem('scores') || '[]');
-                scores.push(score);
-                localStorage.setItem('scores', JSON.stringify(scores));
-            }
         }
 
         // Create the game grid
@@ -180,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(countdownInterval);
             isRunning = false;
             intervalId = null;
-            saveScoreToLocalStorage(); // Save score when simulation stops
         }
 
         // Clear the grid and stop the simulation
@@ -197,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Start countdown timer for the game
         function startCountdown() {
-            countdown = 15;
+            countdown = 30;
             timerDisplay.textContent = countdown;
 
             countdownInterval = setInterval(() => {
@@ -218,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clickColorInput.addEventListener('change', createGrid);
         backgroundColorInput.addEventListener('change', createGrid);
 
-        createGrid();
+        createGrid(); // Initialize the grid when the page loads
     }
 
     GameGrid();

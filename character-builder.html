@@ -7,21 +7,22 @@
     <link rel="stylesheet" href="CSS/character-builder.css">
     <!-- Link naar de JavaScript bestand voor interactieve functionaliteit -->
     <script src="JS/character-builder.js" defer></script>
+    <script src="JS/script.js" defer></script>
     <title>Character-builder</title>
 </head>
 <body>
     <!-- Hoofdcontainer voor de pagina -->
-    <div class="container">
-        <header>
-            <!-- Logo link naar de character-builder pagina -->
-            <a href="character-builder.html" class="logo">Character Builder</a>
-            <!-- Navigatielijst met links naar andere pagina's en repositories -->
-            <ul class="navlist">
-                <li><a href="index.html">Grid Evolution</a></li>
-                <li><a href="https://github.com/Aharhour/Game-of-life">Repository</a></li>
-            </ul>
-        </header>
-    </div>
+    <header>
+        <a href="character-builder.html" class="logo">Character builder</a>
+        <ul class="navlist">
+            <li><a class="nav-a" href="index.html">Grid Evolution</a></li>
+            <li><a class="nav-a" href="https://github.com/Aharhour/Game-of-life">Repository</a></li>
+        </ul>
+        
+        <div class="avatar-container">
+            <img src="images/avatar.png" alt="Avatar" class="avatar" id="avatar">
+        </div>
+    </header>
 
     <!-- Informatie sectie voor het tonen van character bio -->
     <div id="info">
@@ -39,8 +40,8 @@
     <div id="container">
         <!-- Afbeeldingscontainer met een naam en afbeelding -->
         <div id="image">
-            <h1 id="name">Geralt of Rivia</h1>
-            <img id="img" src="images/gerald.png" alt="">
+            <h1 id="name">Choose your character!</h1>
+            <img id="img" src="images/placeholder.png" alt="">
         </div>
         
         <!-- Knoppen om karakter te veranderen -->

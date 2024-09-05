@@ -1,24 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Get the element where the scores will be displayed
+    // Verkrijg het element waar de scores worden weergegeven
     const scoreTag = document.getElementById('scores');
 
-    // Get the scores from localStorage and parse them from JSON
+    // Verkrijg de scores uit localStorage en parse ze van JSON
     const scorestring = localStorage.getItem('scores');
     const scoreArray = scorestring ? JSON.parse(scorestring) : [];
 
-    // Check if the scoreArray is empty
-    if (scoreArray.length === 0) {
-        console.log('No scores available');
+    // Controleer of scoreArray null of leeg is
+    if (scoreArray.length == 0) {
+        console.log('Niks in de Score array');
         return;
     }
 
-    // Sort the scores in descending order
+    // Sorteer de scores in aflopende volgorde
     scoreArray.sort((a, b) => b - a);
 
-    // Get the top 5 scores
-    const topScore = scoreArray.slice(0, 5); // Instead of using forEach, slice can extract the top 5 directly
+    // Verkrijg de top 5 scores
+    let topScore = [];
 
-    // Add each score to the DOM
+    scoreArray.forEach((score, index) => {
+        if (index < 5) {
+            topScore.push(score);
+        }
+    });
+
+    // Voeg elke score toe aan de DOM
     topScore.forEach(score => {
         const scoreItem = document.createElement('div');
         scoreItem.textContent = score;
