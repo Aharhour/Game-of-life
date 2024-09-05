@@ -144,6 +144,20 @@ li a:focus {
 }
 
 /* Leaderboard sectie stijlen */
+.leaderbord {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2%;
+    width: 100%;
+}
+
+.leaderbord:hover {
+    transform: translateY(-4px) scale(1.02);
+    cursor: pointer;
+}
+
+
 .leaderbord-holder {
     display: flex;
     justify-content: center;
@@ -161,13 +175,19 @@ li a:focus {
 .info-holder {
     margin-top: 1em;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
 }
 
-.info-holder > div {
-    margin: 5px;
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 /* Icon-stijlen in de boxen */
