@@ -3,10 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const scoreTag = document.getElementById('scores');
 
     // Verkrijg de scores uit localStorage en parse ze van JSON
-    const scoreArray = JSON.parse(localStorage.getItem('scores'));
+    const scorestring = localStorage.getItem('scores');
+    const scoreArray = scorestring ? JSON.parse(scorestring) : [];
 
     // Controleer of scoreArray null of leeg is
-    if (scoreArray.length === 0) {
+    if (scoreArray.length == 0) {
         console.log('Niks in de Score array');
         return;
     }
