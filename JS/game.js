@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let cells = [];
         let score = 0;
         let isRunning = false;
-        let countdown = 30;
+        let countdown = 15;
         let prevStates = [];
         let maxActiveCells = 20;
         let placedCells = 0;
@@ -100,22 +100,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Handle cell clicks to toggle 'active' state
         function handleCellClick(cell) {
-            if (isRunning) return; // Disable cell clicks once the game has started
-
+            // Only block interaction after the game starts in Game Mode
+            if (isGameMode && isRunning) return; // Disable cell clicks once the game has started in Game Mode
+        
             if (isGameMode && !cell.classList.contains('active') && placedCells >= maxActiveCells) {
                 alert(`You can only activate a maximum of ${maxActiveCells} cells in Game Mode.`);
-                return; // Prevent placing more than maxActiveCells in game mode
+                return; // Prevent placing more than maxActiveCells in Game Mode
             }
-
+        
             const clickColor = clickColorInput.value;
             const backgroundColor = backgroundColorInput.value;
             cell.classList.toggle('active');
             if (cell.classList.contains('active')) {
                 cell.style.backgroundColor = clickColor;
-                if (isGameMode) placedCells++;
+                if (isGameMode) placedCells++; // Increment placed cells in Game Mode
             } else {
                 cell.style.backgroundColor = backgroundColor;
-                if (isGameMode) placedCells--;
+                if (isGameMode) placedCells--; // Decrement placed cells in Game Mode
             }
         }
 
@@ -202,10 +203,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Clear the grid
         function clearGrid() {
-            stopSimulation();
-            cells.forEach(cell => cell.classList.remove('active'));
-            updateScore(0);
-            placedCells = 0;
+            stopSimulation();  // Stop the game if it's running
+            const backgroundColor = backgroundColorInput.value;  // Get the current background color
+            cells.forEach(cell => {
+                cell.classList.remove('active');  // Deactivate all cells
+                cell.style.backgroundColor = backgroundColor;  // Reset background color to default
+            });
+            updateScore(0);  // Reset the score
+            placedCells = 0;  // Reset placed cells count
         }
 
         // Calculate initial score based on placed cells
@@ -216,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Start the countdown timer in game mode
         function startCountdown() {
-            countdown = 30;
+            countdown = 15;
             timerDisplay.textContent = countdown;
 
             countdownInterval = setInterval(() => {
