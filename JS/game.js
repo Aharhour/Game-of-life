@@ -247,5 +247,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     GameGrid();
 });
-
-

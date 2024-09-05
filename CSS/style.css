@@ -195,7 +195,6 @@ li a:focus {
     align-items: center;
     gap: 2%;
     width: 100%;
-    padding: 1rem;
 }
 
 /* Box-stijlen voor game controls */
@@ -306,18 +305,121 @@ label {
     color: #221;
 }
 
+/* Stijl voor het grid-element. Zorgt ervoor dat het grid wordt gecentreerd op de pagina. */
+#grid {
+    display: grid;
+    margin: 0 auto;
+}
+
+/* Stijl voor de cellen binnen het grid. Bepaalt de afmetingen, achtergrondkleur en rand van elke cel. */
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+/* Stijl voor een actieve cel binnen het grid. Verandert de achtergrondkleur van de cel wanneer deze actief is. */
+.cell.active {
+    background-color: #333;
+}
+
+/* footer styling */
+footer {
+    background-color: #282828;
+    color: #fff;
+    padding: 40px 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px; 
+}
+
+.footer-container {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+    text-align: center;
+}
+
+.footer-container h3 {
+    font-size: 1.6rem;
+    color: #ffd700; 
+    margin-bottom: 20px;
+}
+
+.footer-container li a {
+    list-style: none;
+    margin-bottom: 10px;
+    color:#fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-container p a {
+
+    color: #8c52ff;
+    padding: 20px;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.footer-container p a:hover {
+    text-decoration: none;
+    color: #fff090;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-container li a:hover {
+    color: #ffd700;
+}
+
+li a {
+    text-decoration: none;
+    color: #fff090;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: inline-block;
+}
+
+.logo1
+{
+    width: 200px;
+    height: 200px;
+}
+
 /* Copyright sectie stijlen */
 .copyright {
-    display: flex;
-    color: white;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 2%;
-    padding: 2% 10%;
+    margin-top: 20px;
     text-align: center;
     width: 100%;
+    background-color: #202020;
+    padding: 25px 0;
 }
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    footer .container {
+        flex-direction: column;
+    }
+
+    .footer-container {
+        margin-bottom: 20px;
+    }
+}   
 
 /* Media queries voor responsieve aanpassingen */
 @media (max-width: 1610px) {

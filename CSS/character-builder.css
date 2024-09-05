@@ -1,81 +1,3 @@
-@import "https://fonts.googleapis.com/css?family=Press%20Start%202P";
-
-/* Basisreset en standaardinstellingen voor alle elementen */
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
-    scroll-behavior: smooth;
-    font-family: 'Press Start 2P', sans-serif;
-}
-
-/* body-stijlen */
-body {
-    width: 100%;
-    font-size: 1rem;
-    line-height: 2;
-    height: 100%;
-    background-color: #221;
-    text-transform: uppercase;
-    overflow-x: hidden;
-}
-
-/* Header-stijlen */
-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    box-shadow: 2px 2px 8px rgba(165, 165, 165, 0.1);
-    flex-wrap: wrap;
-}
-
-/* Navigatielijst stijlen */
-.navlist {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.navlist li a {
-    text-decoration: none;
-    color: #fff090;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    display: inline-block;
-}
-
-/* Hover- en focus-effecten voor links */
-.navlist li a:hover,
-.navlist li a:focus {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.4);
-    transform: scale(1.1);
-}
-
-/* Logo-stijlen */
-.logo {
-    font-size: 2rem;
-    color: #ffdd00;
-}
-
-/* Avatar-stijlen */
-.avatar {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.avatar-container {
-    position: relative;
-    display: inline-block;
-}
-
 /* Info-box stijlen */
 #info {
     display: flex;
@@ -103,6 +25,7 @@ header {
 #image {
     height: 35rem;
     width: 35rem;
+    position: relative;
 }
 
 #image img {
@@ -180,6 +103,19 @@ button:active {
     }
 }
 
+@media (max-width: 1024px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    #info {
+        flex: 1 1 100%;
+        margin: 0.5rem 0;
+        border-left: none;
+        border-bottom: 0.5rem solid;
+    }
+}
+
 @media (max-width: 768px) {
     #name {
         font-size: 35pt;
@@ -190,6 +126,7 @@ button:active {
         font-size: 20px;
         padding: 10px 25px;
     }
+
 }
 
 @media (max-width: 480px) {
@@ -202,10 +139,13 @@ button:active {
         font-size: 18px;
         padding: 8px 20px;
     }
-}
 
-@media (max-width: 1024px) {
     .logo {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
+    }
+
+    #image {
+        height: 25rem;
+        width: 25rem;
     }
 }
