@@ -1,3 +1,4 @@
+@import "https://fonts.googleapis.com/css?family=Press%20Start%202P";
 /* Basisreset en standaardinstellingen voor alle elementen */
 * {
     padding: 0;
@@ -6,20 +7,19 @@
     list-style: none;
     text-decoration: none;
     scroll-behavior: smooth;
-    font-family: "Poppins", sans-serif;
 }
 
-/* Root variabelen voor kleuren en lettergroottes */
-:root {
-    --bg-color: #ffffff; /* Achtergrondkleur */
-    --text-color: #000000; /* Tekstkleur */
-    --main-color: #f0f0f0; /* Hoofdkleur */
-    --other-color: #ffc633; /* Andere kleur */
-    --second-color: #616060; /* Tweede kleur */
-    --h1-font: 5vw; /* Lettergrootte voor h1 */
-    --h2-font: 3.5vw; /* Lettergrootte voor h2 */
-    --p-font: 1rem; /* Lettergrootte voor paragrafen */
-} 
+/* body-stijlen */
+body {
+    width: 100%;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 1rem;
+    line-height: 2;
+    height: 100%;
+    background-color: #221;
+    text-transform: uppercase;
+    overflow-x: hidden;
+}
 
 /* Header-stijlen */
 header {
@@ -27,41 +27,52 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 5%;
+    box-shadow: 2px 2px 8px rgba(165, 165, 165, 0.1);
+    flex-wrap: wrap;
 }
 
-/* Logo-stijlen */
-.logo {
-    font-size: 2rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--text-color);
-}
 
 /* Navigatielijst stijlen */
 .navlist {
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
-.navlist a {
-    font-size: var(--p-font);
-    font-weight: 500;
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 0.3rem;
-}
-
-.navlist a:hover,
-.navlist a:focus {
-    color: var(--bg-color);
-    background-color: var(--second-color);
+li a {
     text-decoration: none;
+    color: #fff090;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: inline-block;
+}
+
+/* Hover-effect voor de link */
+li a:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.4); /* Grotere hover achtergrond */
+    transform: scale(1.1); /* Link springt naar voren */
+}
+
+/* Focus-effect voor betere toegankelijkheid */
+li a:focus {
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+
+/* Logo-stijlen */
+.logo {
+    font-size: 2rem;
+    flex: 1;
+    color: #ffdd00;
 }
 
 /* Avatar stijlen */
 .avatar {
-    vertical-align: middle;
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -77,7 +88,8 @@ header {
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 5rem;
+    top: 6rem;
+    right: 0;
     background-color: #e0cdcd;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -97,10 +109,12 @@ header {
 /* Centrale tekst-stijlen */
 .center-text {
     text-align: center;
+    padding-top: 4rem;
 }
 
 .center-text h2 {
-    font-size: var(--h2-font);
+    font-size: 2rem;
+    color: white;
 }
 
 /* Feature-content styling */
@@ -113,23 +127,22 @@ header {
 
 /* Box-stijlen voor tips */
 .box {
-    flex: 1 1 calc(33.333% - 2%);
-    min-width: 25%;
-    padding: 1% 2%;
-    border-left: 0.5rem solid var(--second-color);
-    box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex: 1 1 calc(33.333% - 2%);
+    padding: 1rem;
+    border-left: 0.5rem solid;
+    box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    transition: transform 0.3s ease, border-left-color 0.3s ease;
-    margin: 1%;
+    margin: 1rem;
+    transition: transform 0.3s ease-in-out;
 }
 
 /* Hover-effect voor de boxen */
 .box:hover {
     transform: translateY(-4px) scale(1.02);
-    border-left: 0.5rem solid var(--text-color);
+    border-left: 0.5rem solid;
     cursor: pointer;
 }
 
@@ -138,6 +151,7 @@ header {
     display: flex;
     justify-content: center;
     margin: 5em 0 2em 0;
+    padding: 0 5%;
 }
 
 .leaderbord {
@@ -150,6 +164,7 @@ header {
     margin-top: 1em;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .nickname-holder > div, .score-holder > div {
@@ -170,35 +185,149 @@ header {
 }
 
 .f-text p {
-    font-size: var(--p-font);
     font-weight: 400;
-    color: var(--second-color);
     line-height: 1.5;
 }
+
+/* Stijl voor de .controls container */
+.controls {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+}
+
+
+/* Basisopmaak voor de game-holder container */
+.game-holder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2%;
+}
+
+/* Box-stijlen voor game controls */
+.box-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-left: 0.5rem solid rgb(0, 0, 0);
+    box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 1rem;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+}
+
+/* Hover-effect voor de boxen */
+.box-game:hover {
+    transform: translateY(-4px) scale(1.02);
+    cursor: pointer;
+}
+
+/* Stijl voor de .controls container */
+.controls {
+    display: flex;
+    flex-direction: row; /* Zorgt ervoor dat knoppen en invoervelden verticaal worden uitgelijnd */
+    align-items: center; /* Centreert de knoppen en invoervelden horizontaal */
+    gap: 10px; /* Ruimte tussen de elementen */
+    padding: 15px;
+}
+
+/* Stijl voor knoppen */
+.button-game {
+    margin-top: 5px;
+    padding: 8px 20px;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid #221;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, font-size 0.3s, box-shadow 0.3s, background 0.3s;
+    cursor: pointer;
+}
+
+/* Hover-effect voor knoppen */
+.button-game:hover {
+    background-color: #221;
+    color: #fff; 
+    font-size: 19px; /* Iets grotere tekst bij hover */
+    transform: translateY(-3px); /* Iets kleinere beweging bij hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Actief effect voor knoppen */
+.button-game:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Kleinere schaduw bij klikken */
+}
+
+/* Inputvelden styling */
+input[type="color"], 
+input[type="range"], 
+input[type="number"] {
+    margin: 5px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels styling */
+label {
+    font-size: 14px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* Grid container styling */
+.div-holders {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Populatie teller */
+#score {
+    font-size: 18px;
+    font-weight: bold;
+    color: #221;
+}
+
 
 /* Copyright sectie stijlen */
 .copyright {
     display: flex;
+    color: white;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 2%;
     padding: 2% 10%;
+    text-align: center;
 }
 
 /* Media queries voor responsieve aanpassingen */
 @media (max-width: 1610px) {
     header {
-        padding: 2% 5%;
+        padding: 1rem 5%;
     }
-    section {
-        padding: 5% 5% 7%;
+    .leaderbord-holder {
+        padding: 0 3%;
     }
-    .brands {
-        padding: 2% 5%;
+}
+
+@media (max-width: 1024px) {
+    .navlist {
+        justify-content: center;
     }
-    .feature {
-        padding: 1% 5% 1%;
+    .avatar-container {
+        display: none;
     }
 }
 
@@ -211,5 +340,12 @@ header {
 @media (max-width: 480px) {
     .box {
         flex: 1 1 100%;
+    }
+    .center-text h2 {
+        font-size: 1.5rem;
+    }
+    .navlist a {
+        font-size: 0.875rem;
+        margin-right: 1rem;
     }
 }
