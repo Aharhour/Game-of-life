@@ -6,11 +6,8 @@ let clickTimer = null;
 function handleClick(event) {
     // Verkrijg het karakter-id van het aangeklikte element
     const character = event.target.getAttribute('id');
-
-    // Verhoog het aantal klikken
     clickCount++;
 
-    // Als er al een timer actief is, stop deze
     if (clickTimer) {
         clearTimeout(clickTimer);
     }
@@ -29,7 +26,7 @@ function handleClick(event) {
         }
         // Reset de klik-teller na de verwerking
         clickCount = 0;
-    }, 300); // Wacht 300 milliseconden om te zien of er een tweede klik is
+    }, 300);
 }
 
 // Functie om het geselecteerde karakter op te slaan en naar een andere pagina te navigeren

@@ -49,7 +49,7 @@ function clearLeaderboard() {
 
 // Update de leaderboard bij het laden van de pagina
 document.addEventListener('DOMContentLoaded', () => {
-    updateLeaderboard(); // Initialiseer de leaderboard
+    updateLeaderboard();
 
     const clearLeaderboardButton = document.getElementById('clear-leaderboard');
     clearLeaderboardButton.addEventListener('click', clearLeaderboard);

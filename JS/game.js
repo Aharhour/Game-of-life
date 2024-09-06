@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         toggleModeButton.addEventListener('click', () => {
             if (isGameMode) {
-                // Als we van Game Mode naar Free Mode schakelen, reset het rooster en de grid counter
                 clearGrid(); // Dit zorgt ervoor dat het rooster opnieuw wordt ingesteld
             }
             isGameMode = !isGameMode;
