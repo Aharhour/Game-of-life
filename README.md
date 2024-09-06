@@ -29,9 +29,6 @@ Conway's Game of Life is a zero-player game that simulates the evolution of cell
 - Run the game and watch how the grid evolves.
 - Use the controls to pause, resume, or step through the simulation.
 
-### Save/Load States:
-- Save the grid state at any point and reload it to continue from where you left off.
-
 ## Rules
 The Game of Life is played on a grid of cells. Each cell can be either alive or dead. The state of each cell in the next generation is determined by these rules:
 
