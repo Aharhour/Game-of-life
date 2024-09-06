@@ -21,7 +21,7 @@ Conway's Game of Life is a zero-player game that simulates the evolution of cell
 - **Visual Display:** A graphical interface to visualize the cells as they evolve.
 - **Time-Line:** Navigate through the history of the simulation to review past states and patterns.
 - **Character Creator:** Customize the appearance of cells with unique designs or colors.
-- **Leaderboard:** Track high scores or notable patterns based on criteria like longevity or population size.
+- **ScorBoard:** Track high scores or notable patterns based on criteria like longevity or population size.
 
 ## Usage
 
