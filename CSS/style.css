@@ -159,6 +159,7 @@ li a:focus {
 .f-text p {
     font-weight: 400;
     line-height: 1.5;
+    padding-bottom: 0.75rem;
 }
 
 /* Media queries voor responsieve aanpassingen */
