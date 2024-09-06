@@ -64,7 +64,7 @@ function ChangeCharacter(character) {
             break;
         case "Yennefer":
             document.getElementById("img").src = "images/yennefer.png";
-            document.getElementById("name").innerHTML = "Yennefer of Vengerberg";
+            document.getElementById("name").innerHTML = "Yennefer Vengerberg";
             document.getElementById("bio").innerHTML = "Yennefer of Vengerberg is a powerful and enigmatic sorceress, renowned for her extraordinary magical prowess and compelling charisma. With strikingly blond hair and her piercing green eyes, she commands both awe and intrigue. Yennefer’s mastery of arcane arts allows her to manipulate elements, weave intricate spells, and influence the course of events with a mere thought. ";
             break;
     }

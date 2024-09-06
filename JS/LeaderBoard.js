@@ -1,33 +1,56 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Verkrijg het element waar de scores worden weergegeven
-    const scoreTag = document.getElementById('scores');
+// Update leaderboard met scores uit localStorage
+function updateLeaderboard() {
+    const placeTag = document.getElementById('place'); // Element voor plaatsnummers
+    const namesTag = document.getElementById('names'); // Element voor namen
+    const scoreTag = document.getElementById('scores'); // Element voor scores
 
-    // Verkrijg de scores uit localStorage en parse ze van JSON
-    const scorestring = localStorage.getItem('scores');
-    const scoreArray = scorestring ? JSON.parse(scorestring) : [];
+    let scoreArray = [];
 
-    // Controleer of scoreArray null of leeg is
-    if (scoreArray.length == 0) {
-        console.log('Niks in de Score array');
+    try {
+        // Verkrijg de gestructureerde gegevens uit localStorage
+        scoreArray = JSON.parse(localStorage.getItem('scores') || '[]');
+    } catch (e) {
+        console.error('Fout bij het parsen van scores:', e);
         return;
     }
 
-    // Sorteer de scores in aflopende volgorde
-    scoreArray.sort((a, b) => b - a);
+    // Sorteer de scores van hoog naar laag
+    scoreArray.sort((a, b) => b.score - a.score);
 
-    // Get the top 5 scores
-    const topScore = scoreArray.slice(0, 10); // Instead of using forEach, slice can extract the top 5 directly
+    // Toon alleen de top 5 scores
+    const topScores = scoreArray.slice(0, 5);
 
-    scoreArray.forEach((score, index) => {
-        if (index < 5) {
-            topScore.push(score);
-        }
-    });
+    // Leeg de bestaande inhoud van de tags
+    placeTag.innerHTML = '';
+    namesTag.innerHTML = '';
+    scoreTag.innerHTML = '';
 
-    // Voeg elke score toe aan de DOM
-    topScore.forEach(score => {
+    // Voeg elke score, naam en plaats nummer toe aan de scoreboard
+    topScores.forEach((entry, index) => {
+        const placeItem = document.createElement('div');
+        placeItem.textContent = index + 1; // Plaats nummer
+        placeTag.appendChild(placeItem);
+
+        const nameItem = document.createElement('div');
+        nameItem.textContent = entry.name; // Naam van de speler
+        namesTag.appendChild(nameItem);
+
         const scoreItem = document.createElement('div');
-        scoreItem.textContent = score;
+        scoreItem.textContent = entry.score; // Score van de speler
         scoreTag.appendChild(scoreItem);
     });
+}
+
+// Clear de leaderboard en verwijder scores uit localStorage
+function clearLeaderboard() {
+    localStorage.removeItem('scores');
+    updateLeaderboard(); // Verwijder de leaderboard-inhoud en update de display
+}
+
+// Update de leaderboard bij het laden van de pagina
+document.addEventListener('DOMContentLoaded', () => {
+    updateLeaderboard(); // Initialiseer de leaderboard
+
+    const clearLeaderboardButton = document.getElementById('clear-leaderboard');
+    clearLeaderboardButton.addEventListener('click', clearLeaderboard);
 });

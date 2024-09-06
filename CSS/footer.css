@@ -1,0 +1,85 @@
+/* footer styling */
+footer {
+    background-color: #282828;
+    color: #fff;
+    padding: 40px 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px; 
+}
+
+.footer-container {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+    text-align: center;
+}
+
+.footer-container h3 {
+    font-size: 1.6rem;
+    color: #ffd700; 
+    margin-bottom: 20px;
+}
+
+.footer-container a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s ease, background-color 0.3s ease;
+}
+
+.footer-container li a {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.footer-container p a {
+    color: #8c52ff;
+    padding: 20px;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.footer-container p a:hover {
+    color: #fff090;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.footer-container li a:hover {
+    color: #ffd700;
+}
+
+.logo1 {
+    width: 200px;
+    height: 200px;
+}
+
+/* Copyright sectie stijlen */
+.copyright {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    background-color: #202020;
+    padding: 25px 0;
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    footer .container {
+        flex-direction: column;
+    }
+
+    .footer-container {
+        margin-bottom: 20px;
+    }
+}   

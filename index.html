@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grid Evolution</title>
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/leaderboard.css">
+    <link rel="stylesheet" href="CSS/game.css">
     <script src="JS/game.js" defer></script>
     <script src="JS/LeaderBoard.js" defer></script>
     <script src="JS/script.js" defer></script>
@@ -12,9 +15,9 @@
 </head>
 <body>
  
-        <!-- Header van de pagina -->
+    <!-- Header van de pagina -->
     <header>
-        <a href="indeqx.html" class="logo">Grid Evolution</a>
+        <a href="index.html" class="logo">Grid Evolution</a>
         <ul class="navlist">
             <li><a class="nav-a" href="character-builder.html">Character builder</a></li>
             <li><a class="nav-a" href="https://github.com/Aharhour/Game-of-life">Repository</a></li>
@@ -27,7 +30,7 @@
             </div>
         </div>
     </header>
-
+        
     <!-- Sectie met tips over het spel -->
     <section class="feature">
         <div class="center-text">
@@ -103,10 +106,11 @@
                     <div id="game-elements" style="display: none;"> <!-- Hide these by default for Free Play -->
                         <p>Timer: <p id="timer">15</p></p>
                         <p>Population: <p id="score">0</p></p>
+                        <p>Grid Counter: <span id="grid-counter"></span></p> <!-- Nieuw element voor de grid counter -->
                     </div>
                 </div>
                 <div class="button-container">
-                    <button class="button-game" id="toggle-mode">Switch to Game Mode</button> 
+                    <button class="button-game" id="toggle-mode">Game Mode</button> 
                     <button class="button-game" id="start">Start</button>
                     <button class="button-game" id="stop">Stop</button>
                     <button class="button-game" id="clear">Clear</button>
@@ -118,33 +122,34 @@
         </div>
     </div>
 
-    <!-- Leaderboard-sectie -->
-    <div class="leaderbord-holder">
-        <div class="leaderbord">
-            <h1>Scoreboard</h1>
-            <div class="info-holder">
-                <div class="info">
-                    <span class="info-label">Place:</span>
-                    <div class="info-content" id="place">
-                        <!-- plaats zullen hier worden toegevoegd -->
-                    </div>
+<!-- Leaderboard-sectie -->
+<div class="leaderbord-holder">
+    <div class="leaderbord">
+        <h1>Scoreboard</h1>
+        <button id="clear-leaderboard" class="button-clear">Clear Leaderboard</button>
+        <div class="info-holder">
+            <div class="info">
+                <span class="info-label">Place:</span>
+                <div class="info-content" id="place">
+                    <!-- Plaatsen zullen hier worden toegevoegd -->
                 </div>
-                <div class="info">
-                    <span class="info-label">Name:</span>
-                    <div class="info-content" id="names">
-                        <!-- Namen zullen hier worden toegevoegd -->
-                    </div>
+            </div>
+            <div class="info">
+                <span class="info-label">Name:</span>
+                <div class="info-content" id="names">
+                    <!-- Namen zullen hier worden toegevoegd -->
                 </div>
-                <div class="info">
-                    <span class="info-label">Score:</span>
-                    <div class="info-content" id="scores">
-                        <!-- Scores zullen hier worden toegevoegd -->
-                    </div>
+            </div>
+            <div class="info">
+                <span class="info-label">Score:</span>
+                <div class="info-content" id="scores">
+                    <!-- Scores zullen hier worden toegevoegd -->
                 </div>
             </div>
         </div>
     </div>
-    
+</div>
+
     <!-- Footer styling -->
     <footer>
         <div class="container">
