@@ -34,7 +34,7 @@ The Game of Life is played on a grid where each cell can be either alive or dead
 - **Each grid has a population of 1,000**
 - **Get as many points as posible in 15seconds**
 
-- ## Installation
+## Installation
 1. Clone the repository:
     ```bash
     git clone <repository-url>
